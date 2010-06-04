@@ -1,7 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Admin_Controller extends MY_Controller {
 
-    protected $data = null;
+    protected $data;
 
     public function  __construct() {
         parent::__construct();

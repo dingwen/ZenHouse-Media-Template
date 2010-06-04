@@ -12,7 +12,7 @@
             <td><?php echo $category['name']; ?></td>
             <td>
                 <?php echo anchor(site_url('admin/categories/edit/' . $category['parent_id'] . '/' . $category['id']), 'edit'); ?>
-                <?php echo anchor(site_url('admin/categories/delete/' . $category['id']), 'delete', 'class="confirm"'); ?>
+                <?php echo anchor(site_url('admin/categories/delete/' . '/' . $category['id']), 'delete', 'class="confirm"'); ?>
             </td>
         </tr>
         <?php endforeach; ?>
