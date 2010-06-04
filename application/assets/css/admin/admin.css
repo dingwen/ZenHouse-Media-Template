@@ -1,13 +1,15 @@
 @charset "UTF-8";
 
 * {
-    font-family:  Georgia,'Times New Roman',times,serif;
+    font-family:Arial, Helvetica, sans-serif;
+	font-weight:lighter;
 }
 
 body {
-    font-size: 1.1em;
+    font-size: 0.93em;
     vertical-align: baseline;
-    margin: 0;
+    margin:0;
+	padding:0;
 }
 
 #wrapper {
@@ -22,7 +24,7 @@ body {
 #header {
     width: 100%;
     min-height: 100px;
-    background-color: #7A764A;
+    background-color: #F1EFF1;
     color: #CCC9AD;
 }
 
@@ -36,7 +38,7 @@ body {
 #nav {
     width: 100%;
     min-height: 30px;
-    background-color: #CCC9AD;
+    background-color: #A8115C;
 }
 
 #nav ul {
@@ -52,45 +54,46 @@ body {
 
 #nav li a {
     display: block;
-    width: 100px;
+    padding: 0 20px 0 20px;
     line-height: 30px;
     text-decoration: none;
-    color: #333333;
+    color: #FFF;
+	font-size:14px;
 }
 
 #nav li a:hover {
-    color: #CCC9AD;
-    background-color: #7A764A;
+   	text-decoration: underline;
+}
+
+#menu_list li{
+	font-size:13px;
 }
 
 #content-wrapper {
     position: relative;
+	padding:20px;
+}
+
+#content-list{
+	width:600px;	
 }
 
 #left-col, #right-col, #mid-col {
-    min-height: 500px;
-    height:auto !important;
-    height:500px;
-}
-
-#left-col {
-    width: 250px;
-    float: left;
+    width: 100%;
 }
 
 #left-col ul {
     padding: 0;
-    margin: 0 0 0 17px;
     list-style: none;
 }
 
 #left-col li {
-    padding: 0;
     margin: 3px 0;
 }
 
 #left-col li a {
     text-decoration: none;
+	float:left;
 }
 
 #left-col li a:hover {
@@ -98,8 +101,11 @@ body {
 }
 
 #right-col {
-    width: 650px;
-    float: right;
+    min-height: 400px;
+    height:auto !important;
+    height:400px;
+	clear:both;
+	padding:15px 0;
 }
 
 #mid-col {
@@ -109,8 +115,8 @@ body {
 #footer {
     clear: both;
     height: 30px;
-    background-color: #403F36;
-    color: #c3c3c3;
+    background-color: #A8115C;
+    color: #FFF;
 }
 
 #footer p {
@@ -128,3 +134,8 @@ body {
     font-family: 'Courier New',Courier,monospace;
     font-size: 12px;
 }
+
+h1, h2{color:#312D2D;}
+
+h2{font-size:18px;}
+
