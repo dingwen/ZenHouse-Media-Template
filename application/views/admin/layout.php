@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
         <title><?php echo $template['title']; ?></title>
         <?php $this->load->view('fragments/google_cdn'); ?>
         <?php echo $template['metadata']; ?>
@@ -9,7 +9,7 @@
     <body>
         <div id="wrapper">
             <?php echo $template['partials']['header']; ?>
-			<?php echo $template['partials']['nav']; ?>
+            <?php echo $template['partials']['nav']; ?>
             <div id="content-wrapper">
                 <?php $this->load->view('admin/result_messages'); ?>
             <?php if (!empty($template['partials']['side_menu'])): ?>

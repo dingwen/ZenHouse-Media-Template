@@ -10,7 +10,12 @@
             $.post("<?php echo site_url('admin/categories/get_sub'); ?>" + "/" + $(this).val(), {}, function(data) {
                 $('#sub-categories').html(data);
                 $('a.confirm').click(function() {return confirm('Are you sure you want to delete this!?');});
-                $('#sub-categories-list').dataTable();
+                $('#sub-categories-list').dataTable({
+                    "aoColumns": [
+                        null,
+                        { "bSortable": false }
+                    ]
+                });
             });
         });
     });

@@ -43,4 +43,11 @@ class MY_Model extends Model {
     public function delete($id = 0) {
         return $this->db->delete($this->table, array('id' => $id));
     }
+
+    public function check_duplicate($where = array()) {
+        if($this->get_many_by($where)) {
+            return TRUE;
+        }
+        return FALSE;
+    }
 }

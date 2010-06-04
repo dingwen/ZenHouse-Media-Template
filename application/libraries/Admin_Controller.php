@@ -6,10 +6,11 @@ class Admin_Controller extends MY_Controller {
     public function  __construct() {
         parent::__construct();
         $this->load->helper('form');
+        $this->load->library('form_validation');
         
         // Template configuration
-	    $this->template->set_layout('admin/layout');
-	    $this->template->enable_parser(FALSE);
+        $this->template->set_layout('admin/layout');
+        $this->template->enable_parser(FALSE);
 
         // Build general meta data, javascript, css and other information
         $this->template->title('ZenHouse Media Artist Site Control Panel');
