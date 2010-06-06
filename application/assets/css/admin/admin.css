@@ -75,7 +75,17 @@ body {
 }
 
 #content-list{
-	width:600px;	
+	width:600px;
+	background:#F1EFF1;
+	min-height:350px;
+	height:auto !important;
+    height:350px;
+	padding:20px;
+	border: 1px solid #B9B7B9;
+}
+
+#sub-categories{
+	background:#F1EFF1;	
 }
 
 #left-col, #right-col, #mid-col {

@@ -315,15 +315,16 @@ table.display tr.odd.row_selected td {
  * Sorting classes for columns
  */
 /* For the standard odd/even */
-tr.odd td{width:550px;}
+tr.odd td{width:300px; background-color: #D6CCD6;}
+tr.even td{background-color:#F9F7F9;}
 
 tr.odd td.sorting_1 {
-	background-color: #D3D6FF;
-	
+	background-color: #B9B7B9;
+	width:750px;
 }
 
 tr.odd td.sorting_2 {
-	background-color: #DADCFF;
+	background-color: #D6CCD6;
 }
 
 tr.odd td.sorting_3 {
@@ -331,7 +332,7 @@ tr.odd td.sorting_3 {
 }
 
 tr.even td.sorting_1 {
-	background-color: #EAEBFF;
+	background-color: #E0DCE0;
 	width: 700px;
 }
 
