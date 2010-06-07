@@ -12,4 +12,12 @@ class Web_profile_m extends MY_Model {
         }
         return FALSE;
     }
+
+    public function get_homepage_file() {
+        $result = $this->get_all();
+        if($result) {
+            return $result[0]['homepage_file'];
+        }
+        return FALSE;
+    }
 }

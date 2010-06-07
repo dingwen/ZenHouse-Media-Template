@@ -31,7 +31,7 @@ $config['asset_dir'] = APPPATH_URI;
 */
 
 // Right now its pointing to the same place as the base_url.
-$config['asset_url'] = config_item('base_url') . APPPATH . 'assets/';
+$config['asset_url'] = config_item('base_url') . APPPATH;
 
 /*
 |--------------------------------------------------------------------------

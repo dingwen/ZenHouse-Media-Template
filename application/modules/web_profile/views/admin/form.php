@@ -22,8 +22,9 @@
         </div>
         <div>
             <label>Homepage File: </label>
-            <?php echo form_upload('homepage_file', '', 'class="fileupload"') ?>
-            <span>(image/flash)</span>
+            <?php echo form_upload('userfile', '', 'id="uploadify"'); ?>
+            <div id="uploaded-file"></div>
+            <div id="file-queue"></div>
         </div>
         <div>
             <label>Meta Keywords: </label>
@@ -43,3 +44,25 @@
         </div>
     </form>
 </div>
+<script type="text/javascript">
+    $(function() {
+        $('#uploadify').uploadify({
+            'fileDataName' : 'userfile',
+            'uploader' : "<?php echo js_path('admin/uploadify.swf'); ?>",
+            'script' : "<?php echo site_url('admin/web_profile/save_file'); ?>",
+            'cancelImg' : "<?php echo image_path('cancel.png'); ?>",
+            'queueID' : "file-queue",
+            'auto' : true,
+            'multi' : false,
+            'fileDesc' : 'Homepage Image or Flash File',
+            'fileExt' : '*.png;*.jpg;*.swf',
+            'sizeLimit' : '5000000',
+            'onError' : function (event, queueID, fileObj, errorObj) {
+                alert(errorObj.type + ': ' + errorObj.info);
+            },
+            'onComplete' : function (event, queueID, fileObj, response, data) {
+                $('#uploaded-file').html(response);
+            }
+        });
+    });
+</script>
