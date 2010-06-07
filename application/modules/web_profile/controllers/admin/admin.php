@@ -6,6 +6,7 @@ class Admin extends Admin_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->helpers(array('path', 'file'));
+        $this->load->library('cache');
         $this->load->model('web_profile_m');
 
         $this->validation_rules = array(
@@ -52,20 +53,43 @@ class Admin extends Admin_Controller {
             array(
                 'field'   => 'homepage_file',
                 'label'   => 'Homepage File',
-                'rules'   => 'trim'
-            ),
-            array(
-                'field'   => 'homepage_file_mime',
-                'label'   => 'Homepage File Mime Type',
-                'rules'   => 'trim'
+                'rules'   => 'trim|required'
             )
         );
     }
 
     public function index() {
         $profile_data = $this->web_profile_m->get_profile();
+        
+        $this->form_validation->set_rules($this->validation_rules);
+        
+        if($this->form_validation->run()) {
+            $temp_data = array(
+                'name' => $this->input->post('name'),
+                'tagline' => $this->input->post('tagline'),
+                'welcome_title' => $this->input->post('welcome_title'),
+                'welcome_message' => $this->input->post('welcome_message'),
+                'contact_email' => $this->input->post('contact_email'),
+                'meta_keywords' => $this->input->post('meta_keywords'),
+                'meta_title' => $this->input->post('meta_title'),
+                'meta_description' => $this->input->post('meta_description'),
+                'homepage_file' => $this->input->post('homepage_file')
+            );
+            if($profile_data) {
+                $result = $this->web_profile_m->update($profile_data['id'], $temp_data);
+            } else {
+                $result = $this->web_profile_m->insert($temp_data);
+            }
 
-        $this->output->enable_profiler(TRUE);
+            if ($result) {
+                $this->cache->write($temp_data, 'web_profile');
+                $this->session->set_flashdata('success', TRUE);
+            } else {
+                $this->session->set_flashdata('error', TRUE);
+            }
+
+            redirect('admin/web_profile');
+        }
 
         if($profile_data) {
             foreach($profile_data as $key=>$data) {
@@ -93,15 +117,14 @@ class Admin extends Admin_Controller {
         if(!$this->upload->do_upload()) {
             echo '<span style="color: red;">' . $this->upload->display_errors() . '</span><br />';
         } else {
-            if($this->web_profile_m->get_homepage_file()) {
-                delete_files($config['upload_path']);
+            $old_file = $this->web_profile_m->get_homepage_file();
+            if($old_file) {
+                if(file_exists($config['upload_path'] . $old_file)) {
+                    unlink($config['upload_path'] . $old_file);
+                }
             }
-
             $data = $this->upload->data();
-            $response = '<p>File: ' . $data['file_name'] . 'is uploaded.</p>';
-            $response .= form_hidden('homepage_file', $data['file_name']);
-            $response .= form_hidden('homepage_file_mime', get_mime_by_extension($data['file_name']));
-            echo $response;
+            echo $data['file_name'];
         }
     }
 }

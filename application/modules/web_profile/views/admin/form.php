@@ -22,8 +22,9 @@
         </div>
         <div>
             <label>Homepage File: </label>
+            <?php echo form_input('homepage_file_text', set_value('homepage_file_text', $profile->homepage_file), 'id="homepage_file_text" disabled="true"'); ?>
+            <?php echo form_hidden('homepage_file', set_value('homepage_file', $profile->homepage_file)); ?>
             <?php echo form_upload('userfile', '', 'id="uploadify"'); ?>
-            <div id="uploaded-file"></div>
             <div id="file-queue"></div>
         </div>
         <div>
@@ -61,7 +62,9 @@
                 alert(errorObj.type + ': ' + errorObj.info);
             },
             'onComplete' : function (event, queueID, fileObj, response, data) {
-                $('#uploaded-file').html(response);
+                alert("The selected " + response + " is uploaded.");
+                $('input[name="homepage_file"]').val(response);
+                $('#homepage_file_text').val(response);
             }
         });
     });
