@@ -279,7 +279,7 @@ class CI_DB_driver {
 		{
 			$sql = $this->compile_binds($sql, $binds);
 		}
-
+        
 		// Save the  query for debugging
 		if ($this->save_queries == TRUE)
 		{

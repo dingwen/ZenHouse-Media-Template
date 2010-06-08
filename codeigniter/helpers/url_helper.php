@@ -437,7 +437,7 @@ if ( ! function_exists('auto_link'))
  * @param	string	the URL
  * @return	string
  */
-if ( ! function_exists('prep_url'))
+if (!function_exists('prep_url'))
 {
 	function prep_url($str = '')
 	{

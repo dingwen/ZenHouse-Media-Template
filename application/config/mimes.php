@@ -68,10 +68,10 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'wav'	=>	'audio/x-wav',
 				'bmp'	=>	'image/bmp',
 				'gif'	=>	'image/gif',
-				'jpeg'	=>	array('image/jpeg', 'image/pjpeg'),
-				'jpg'	=>	array('image/jpeg', 'image/pjpeg'),
-				'jpe'	=>	array('image/jpeg', 'image/pjpeg'),
-				'png'	=>	array('image/png',  'image/x-png'),
+				'jpeg'	=>	array('image/jpeg', 'image/pjpeg', 'application/octet-stream'),
+				'jpg'	=>	array('image/jpeg', 'image/pjpeg', 'application/octet-stream'),
+				'jpe'	=>	array('image/jpeg', 'image/pjpeg', 'application/octet-stream'),
+				'png'	=>	array('image/png',  'image/x-png', 'application/octet-stream'),
 				'tiff'	=>	'image/tiff',
 				'tif'	=>	'image/tiff',
 				'css'	=>	'text/css',
@@ -97,7 +97,8 @@ $mimes = array(	'hqx'	=>	'application/mac-binhex40',
 				'xlsx'	=>	'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
 				'word'	=>	array('application/msword', 'application/octet-stream'),
 				'xl'	=>	'application/excel',
-				'eml'	=>	'message/rfc822'
+				'eml'	=>	'message/rfc822',
+                'swf'   =>  array('application/x-shockwave-flash', 'application/octet-stream')
 			);
 
 

@@ -185,7 +185,7 @@ class Modules
 		$segments = explode('/', $file);
 
 		$file = array_pop($segments);
-		if ($base == 'libraries/') $file = ucfirst($file);
+		if ($base == 'libraries/') { $file = ucfirst($file); }
 		$file_ext = strpos($file, '.') ? $file : $file.EXT;
 
 		$lang && $lang .= '/';

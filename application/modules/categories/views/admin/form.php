@@ -1,4 +1,4 @@
-<div>
+<div id="form">
     <form action="<?php echo site_url(uri_string()); ?>" method="post">
         <div>
             <label>Page List: </label>

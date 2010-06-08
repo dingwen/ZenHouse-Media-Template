@@ -1020,6 +1020,5 @@ if ( ! function_exists('_get_validation_object'))
 	}
 }
 
-
 /* End of file form_helper.php */
 /* Location: ./system/helpers/form_helper.php */

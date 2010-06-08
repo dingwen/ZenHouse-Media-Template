@@ -111,7 +111,6 @@ class Template
      *
      * @access    public
      * @param    string
-
      * @return    void
      */
     public function build($view = '', $data = array(), $return = FALSE)
