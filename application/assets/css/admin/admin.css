@@ -74,8 +74,8 @@ body {
 	padding:20px;
 }
 
-#content-list{
-	width:600px;
+#content-list, #form{
+	width:460px;
 	background:#F1EFF1;
 	min-height:350px;
 	height:auto !important;
@@ -84,9 +84,16 @@ body {
 	border: 1px solid #B9B7B9;
 }
 
+label{width:150px; float:left;}
+input{width:300px; margin:0 0 10px 0;}
+textarea{width:453px; font-family:Arial, Helvetica, sans-serif; font-size:13px; margin:0 0 10px 0;}
+
+
 #sub-categories{
 	background:#F1EFF1;	
 }
+
+#sub-categories input {width: 130px;}
 
 #left-col, #right-col, #mid-col {
     width: 100%;

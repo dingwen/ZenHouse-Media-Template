@@ -320,7 +320,7 @@ tr.even td{background-color:#F9F7F9;}
 
 tr.odd td.sorting_1 {
 	background-color: #B9B7B9;
-	width:750px;
+	width:800px;
 }
 
 tr.odd td.sorting_2 {
@@ -333,7 +333,7 @@ tr.odd td.sorting_3 {
 
 tr.even td.sorting_1 {
 	background-color: #E0DCE0;
-	width: 700px;
+	width:800px;
 }
 
 tr.even td.sorting_2 {
