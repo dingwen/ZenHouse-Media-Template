@@ -25,7 +25,6 @@
             <?php echo form_input('homepage_file_text', set_value('homepage_file_text', $profile->homepage_file), 'id="homepage_file_text" disabled="true"'); ?>
             <?php echo form_hidden('homepage_file', set_value('homepage_file', $profile->homepage_file)); ?>
             <?php echo form_upload('userfile', '', 'id="uploadify"'); ?>
-            <div id="file-queue"></div>
         </div>
         <div>
             <label>Meta Keywords: </label>
@@ -49,14 +48,12 @@
     $(function() {
         $('#uploadify').uploadify({
             'fileDataName' : 'userfile',
-            'uploader' : "<?php echo js_path('admin/uploadify.swf'); ?>",
+            'uploader' : "<?php echo js_url('admin/uploadify.swf'); ?>",
             'script' : "<?php echo site_url('admin/web_profile/save_file'); ?>",
-            'cancelImg' : "<?php echo image_path('cancel.png'); ?>",
-            'queueID' : "file-queue",
+            'cancelImg' : "<?php echo image_url('cancel.png'); ?>",
+            'folder' : "uploads/",
             'auto' : true,
             'multi' : false,
-            'fileDesc' : 'Homepage Image or Flash File',
-            'fileExt' : '*.png;*.jpg;*.swf',
             'sizeLimit' : '5000000',
             'onError' : function (event, queueID, fileObj, errorObj) {
                 alert(errorObj.type + ': ' + errorObj.info);
@@ -65,6 +62,7 @@
                 alert("The selected " + response + " is uploaded.");
                 $('input[name="homepage_file"]').val(response);
                 $('#homepage_file_text').val(response);
+                return true;
             }
         });
     });

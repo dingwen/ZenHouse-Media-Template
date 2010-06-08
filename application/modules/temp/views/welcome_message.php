@@ -53,6 +53,9 @@ code {
 <p>The corresponding controller for this page is found at:</p>
 <code>system/application/controllers/welcome.php</code>
 
+<P>Web Profile Cache</P>
+<code><?php print_r($web_profile_cache); ?></code>
+
 <p>All Kinds of Directories</p>
 <code>$config['cache_dir'] = APPPATH.'cache/' ==> <?php echo $cache_dir; ?></code>
 <code>BASE_URL ==> <?php echo BASE_URL; ?></code>

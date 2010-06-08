@@ -20,4 +20,9 @@ class Web_profile_m extends MY_Model {
         }
         return FALSE;
     }
+
+    public function get_web_profile() {
+        $this->load->library('cache');
+        return $this->cache->get('web_profile');
+    }
 }
