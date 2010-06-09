@@ -1,7 +1,5 @@
 (function($){
     $(function() {
-        $("div#form-tabs").tabs();
-
         $('a.close').click(function() {
             $(this).parents('.message').hide('fast');
             return false;

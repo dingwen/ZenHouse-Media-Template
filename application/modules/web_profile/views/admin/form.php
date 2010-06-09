@@ -22,9 +22,10 @@
         </div>
         <div>
             <label>Homepage File: </label>
-            <?php echo form_input('homepage_file_text', set_value('homepage_file_text', $profile->homepage_file), 'id="homepage_file_text" disabled="true"'); ?>
-            <?php echo form_hidden('homepage_file', set_value('homepage_file', $profile->homepage_file)); ?>
-            <?php echo form_upload('userfile', '', 'id="uploadify"'); ?>
+            <?php echo form_input('file_name', set_value('homepage_file', $profile->homepage_file), 'id="file-name" disabled="true"'); ?>
+            <?php echo form_button('', 'Browse', 'id="ajax-upload"')?>
+            <?php echo form_hidden('homepage_file', set_value('homepage_file', $profile->homepage_file)) ?>
+            <div id="fileupload"></div>
         </div>
         <div>
             <label>Meta Keywords: </label>
@@ -45,25 +46,33 @@
     </form>
 </div>
 <script type="text/javascript">
-    $(function() {
-        $('#uploadify').uploadify({
-            'fileDataName' : 'userfile',
-            'uploader' : "<?php echo js_url('admin/uploadify.swf'); ?>",
-            'script' : "<?php echo site_url('admin/web_profile/save_file'); ?>",
-            'cancelImg' : "<?php echo image_url('cancel.png'); ?>",
-            'folder' : "uploads/",
-            'auto' : true,
-            'multi' : false,
-            'sizeLimit' : '5000000',
-            'onError' : function (event, queueID, fileObj, errorObj) {
-                alert(errorObj.type + ': ' + errorObj.info);
-            },
-            'onComplete' : function (event, queueID, fileObj, response, data) {
-                alert("The selected " + response + " is uploaded.");
-                $('input[name="homepage_file"]').val(response);
-                $('#homepage_file_text').val(response);
-                return true;
+    $(document).ready(function() {
+        var button = $('#ajax-upload');
+        var fileupload = $('#fileupload');
+        new AjaxUpload(
+            button,
+            {
+                action: "<?php echo site_url('admin/web_profile/save_file'); ?>",
+                name: 'userfile',
+                onSubmit: function(file, ext) {
+                    fileupload.empty();
+                    button.text('Uploading');
+                    this.disable();
+                },
+                onComplete: function(file, response) {
+                    var responseObj = $.parseJSON(response);
+                    if(responseObj.uploaded) {
+                        button.text('File Uploaded');
+                        this.disable();
+                        $('#file-name').val(responseObj.message);
+                        $("input[name='homepage_file']").val(responseObj.message);
+                    } else {
+                        button.text('Browse');
+                        this.enable();
+                        fileupload.html('<span style="color: red;">' + responseObj.message + '</span>');
+                    }
+                }
             }
-        });
+        );
     });
 </script>

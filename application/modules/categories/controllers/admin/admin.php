@@ -7,6 +7,7 @@ class Admin extends Admin_Controller {
         parent::__construct();
         $this->load->model('categories_m');
         $this->template->set_partial('side_menu', 'admin/side_menu');
+        $this->template->set_partial('google_cdn', 'fragments/jquery_cdn', FALSE);
         $this->data->main_categories = $this->categories_m->get_main();
 
         $this->validation_rules = array(

@@ -70,7 +70,7 @@ CREATE TABLE `web_profile` (
 
 LOCK TABLES `web_profile` WRITE;
 /*!40000 ALTER TABLE `web_profile` DISABLE KEYS */;
-INSERT INTO `web_profile` VALUES (1,'Ding-Wen Chen','This is my template system','Haha I am the man!','CodeIgniter provides a comprehensive form validation and data prepping class that helps minimize the amount of code you\'ll write.','dingwen@zenhousemedia.com','Blind_God_1.jpg','first second','Template site','CodeIgniter provides a comprehensive form validation and data prepping class that helps minimize the amount of code you\'ll write.');
+INSERT INTO `web_profile` VALUES (1,'Ding-Wen Chen Template Site','Wow! Watch Out!','Haha I am the man!','CodeIgniter provides a comprehensive form validation and data prepping class that helps minimize the amount of code you\'ll write.','dingwen@zenhousemedia.com','Vancouver-2010-Robson-Square.jpg','first second','Template site','CodeIgniter provides a comprehensive form validation and data prepping class that helps minimize the amount of code you\'ll write.');
 /*!40000 ALTER TABLE `web_profile` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -83,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-06-07  0:48:43
+-- Dump completed on 2010-06-09 16:03:01

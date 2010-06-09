@@ -5,9 +5,13 @@ class Admin extends Admin_Controller {
 
     public function __construct() {
         parent::__construct();
+        
         $this->load->helpers(array('path', 'file'));
         $this->load->library('cache');
         $this->load->model('web_profile_m');
+
+        $this->template->set_partial('google_cdn', 'fragments/jquery_cdn', FALSE);
+        $this->template->append_metadata(js('admin/jquery.ajaxupload.js'));
 
         $this->validation_rules = array(
             array(
@@ -50,19 +54,19 @@ class Admin extends Admin_Controller {
                 'label'   => 'Meta Description',
                 'rules'   => 'trim|max_length[250]'
             ),
-            array(
+            array (
                 'field'   => 'homepage_file',
                 'label'   => 'Homepage File',
-                'rules'   => 'trim|required'
+                'rules'   => 'trim'
             )
         );
     }
 
     public function index() {
         $profile_data = $this->web_profile_m->get_profile();
-        
+
         $this->form_validation->set_rules($this->validation_rules);
-        
+
         if($this->form_validation->run()) {
             $temp_data = array(
                 'name' => $this->input->post('name'),
@@ -75,6 +79,7 @@ class Admin extends Admin_Controller {
                 'meta_description' => $this->input->post('meta_description'),
                 'homepage_file' => $this->input->post('homepage_file')
             );
+
             if($profile_data) {
                 $result = $this->web_profile_m->update($profile_data['id'], $temp_data);
             } else {
@@ -102,20 +107,21 @@ class Admin extends Admin_Controller {
         }
 
         $this->data->profile =& $profile;
-
-        $this->template->append_metadata(css('admin/uploadify.css'))->append_metadata(js('admin/swfobject.js'))->append_metadata(js('admin/jquery.uploadify.min.js'));
         $this->template->build('admin/form', $this->data);
     }
-
+    
     public function save_file() {
         $config['upload_path'] = set_realpath(APPPATH . 'uploads/homepage/');
         $config['allowed_types'] = 'png|jpg|swf|jpeg';
         $config['max_size'] = '5000';
+        $config['max_width'] = '1024';
+        $config['max_height'] = '768';
+        $config['remove_spaces'] = TRUE;
 
         $this->load->library('upload', $config);
 
         if(!$this->upload->do_upload()) {
-            echo '<span style="color: red;">' . $this->upload->display_errors() . '</span><br />';
+            echo json_encode(array('uploaded' => FALSE, 'message' => $this->upload->display_errors('', '')));
         } else {
             $old_file = $this->web_profile_m->get_homepage_file();
             if($old_file) {
@@ -123,8 +129,9 @@ class Admin extends Admin_Controller {
                     unlink($config['upload_path'] . $old_file);
                 }
             }
-            $data = $this->upload->data();
-            echo $data['file_name'];
+            $file =& $this->upload->data();
+            echo json_encode(array('uploaded' => TRUE, 'message' => $file['file_name']));
         }
     }
 }
+

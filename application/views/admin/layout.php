@@ -3,7 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title><?php echo $template['title']; ?></title>
-        <?php $this->load->view('fragments/google_cdn'); ?>
+        <?php if (!empty($template['partials']['google_cdn'])): ?>
+        <?php echo $template['partials']['google_cdn']; ?>
+        <?php endif; ?>
         <?php echo $template['metadata']; ?>
     </head>
     <body>

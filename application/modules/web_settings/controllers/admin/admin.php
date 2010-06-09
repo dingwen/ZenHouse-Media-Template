@@ -2,11 +2,10 @@
 class Admin extends Admin_Controller {
 	public function __construct() {
 		parent::__construct();
+        $this->load->model('web_settings_m');
 	}
 	
 	public function index() {
-		$data = array('temp' => 'This is temp module.');
-        $this->template->set_partial('side_menu', 'admin/side_menu');
-		$this->template->build('admin/index', $data);
+		$this->template->build('admin/form');
 	}
 }
