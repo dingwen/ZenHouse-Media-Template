@@ -6,17 +6,17 @@ class Web_profile_m extends MY_Model {
     }
 
     public function get_profile() {
-        $result = $this->get_all();
+        $result = $this->get_first();
         if($result) {
-            return $result[0];
+            return $result;
         }
         return FALSE;
     }
 
     public function get_homepage_file() {
-        $result = $this->get_all();
+        $result = $this->get_first();
         if($result) {
-            return $result[0]['homepage_file'];
+            return $result['homepage_file'];
         }
         return FALSE;
     }

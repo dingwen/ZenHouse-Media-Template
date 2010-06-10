@@ -21,6 +21,15 @@ class MY_Model extends Model {
         return FALSE;
     }
 
+    public function get_first() {
+        $this->db->order_by('id', 'asc')->limit(1);
+        $query = $this->db->get($this->table);
+        if($query->num_rows() > 0) {
+            return $query->row_array();
+        }
+        return FALSE;
+    }
+
     public function get_many_by($where = array(), $sort = 'id', $order = 'asc') {
         $this->db->where($where)->order_by($sort, $order);
         $query = $this->db->get($this->table);
