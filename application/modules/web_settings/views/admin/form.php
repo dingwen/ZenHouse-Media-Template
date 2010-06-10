@@ -13,6 +13,10 @@
             <?php echo form_checkbox('sharethis_enable', '1', set_value('sharethis_enable', $settings->sharethis_enable)); ?>
         </div>
         <div>
+            <label>Google API Key</label>
+            <?php echo form_input('google_api_key', set_value('google_api_key', $settings->google_api_key)); ?>
+        </div>
+        <div>
             <label>Google Analytics Web Property ID</label>
             <?php echo form_input('google_analytics', set_value('google_analytics', $settings->google_analytics)); ?>
         </div>

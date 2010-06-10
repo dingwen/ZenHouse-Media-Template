@@ -18,6 +18,38 @@ USE `zhm`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `contact`
+--
+
+DROP TABLE IF EXISTS `contact`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `unit_no` varchar(6) NOT NULL DEFAULT '',
+  `address` varchar(250) NOT NULL DEFAULT '',
+  `city` varchar(45) NOT NULL DEFAULT '',
+  `region` varchar(45) NOT NULL DEFAULT '',
+  `country` varchar(45) NOT NULL DEFAULT '',
+  `postcode` varchar(8) NOT NULL DEFAULT '',
+  `phones` varchar(250) NOT NULL DEFAULT '{"0":"","1":"","2":""}',
+  `subject` varchar(250) NOT NULL DEFAULT '',
+  `emails` varchar(250) NOT NULL DEFAULT '{"0":"","1":"","2":""}',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contact`
+--
+
+LOCK TABLES `contact` WRITE;
+/*!40000 ALTER TABLE `contact` DISABLE KEYS */;
+INSERT INTO `contact` VALUES (2,'12345','4000 Kingsway','Burnaby','BC','Canada','V5A 5G5','[\"1231234567\",\"\",\"1231234567\"]','','[\"a@b.com\",\"\",\"a@b.com\"]');
+/*!40000 ALTER TABLE `contact` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categories`
 --
 
@@ -56,6 +88,7 @@ CREATE TABLE `web_settings` (
   `sharethis_enable` tinyint(1) DEFAULT '0',
   `google_analytics` varchar(20) DEFAULT '',
   `google_analytics_enable` tinyint(1) DEFAULT '0',
+  `google_api_key` varchar(100) DEFAULT 'ABQIAAAAFlh71Oercit9GK4zUpZOvBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTupV_x0t8y-7f-UXDJdAiN6HvYtQ',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -66,7 +99,7 @@ CREATE TABLE `web_settings` (
 
 LOCK TABLES `web_settings` WRITE;
 /*!40000 ALTER TABLE `web_settings` DISABLE KEYS */;
-INSERT INTO `web_settings` VALUES (1,1,'<script type=\"text/javascript\" src=\"http://w.sharethis.com/button/sharethis.js#publisher=b86c897d-fff1-4bb6-9981-82d9351341bd&amp;type=website&amp;post_services=email%2Cfacebook%2Ctwitter%2Cgbuzz%2Cmyspace%2Cdigg%2Csms%2Cwindows_live%2Cdelicious%2Cstumbleupon%2Creddit%2Cgoogle_bmarks%2Clinkedin%2Cbebo%2Cybuzz%2Cblogger%2Cyahoo_bmarks%2Cmixx%2Ctechnorati%2Cfriendfeed%2Cpropeller%2Cwordpress%2Cnewsvine\"></script>',0,'UA-16845399-1',1);
+INSERT INTO `web_settings` VALUES (1,1,'<script type=\"text/javascript\" src=\"http://w.sharethis.com/button/sharethis.js#publisher=b86c897d-fff1-4bb6-9981-82d9351341bd&amp;type=website&amp;post_services=email%2Cfacebook%2Ctwitter%2Cgbuzz%2Cmyspace%2Cdigg%2Csms%2Cwindows_live%2Cdelicious%2Cstumbleupon%2Creddit%2Cgoogle_bmarks%2Clinkedin%2Cbebo%2Cybuzz%2Cblogger%2Cyahoo_bmarks%2Cmixx%2Ctechnorati%2Cfriendfeed%2Cpropeller%2Cwordpress%2Cnewsvine\"></script>',1,'UA-16845399-1',1,'ABQIAAAAFlh71Oercit9GK4zUpZOvBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTupV_x0t8y-7f-UXDJdAiN6HvYtQ');
 /*!40000 ALTER TABLE `web_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,4 +144,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-06-09 20:24:42
+-- Dump completed on 2010-06-10  3:41:50

@@ -2,11 +2,8 @@
 class Admin extends Admin_Controller {
 	public function __construct() {
 		parent::__construct();
-        
-        $this->load->library('cache');
+
         $this->load->model('web_settings_m');
-        
-        $this->template->set_partial('google_cdn', 'fragments/jquery_cdn', FALSE);
 
         $this->validation_rules = array(
             array(
@@ -28,10 +25,16 @@ class Admin extends Admin_Controller {
                 'field' => 'google_analytics',
                 'label' => 'Google Analytics Web Property ID',
                 'rules' => 'trim'
-            ),array(
+            ),
+            array(
                 'field' => 'google_analytics_enable',
                 'label' => 'Enable Google Analytics',
                 'rules' => 'max_length[1]|numeric|callback_check_ga'
+            ),
+            array(
+                'field' => 'google_api_key',
+                'label' => 'Google API Key',
+                'rules' => 'trim|alpha_dash'
             )
         );
 	}
@@ -47,7 +50,8 @@ class Admin extends Admin_Controller {
                 'sharethis' => $this->input->post('sharethis'),
                 'sharethis_enable' => $this->input->post('sharethis_enable'),
                 'google_analytics' => $this->input->post('google_analytics'),
-                'google_analytics_enable' => $this->input->post('google_analytics_enable')
+                'google_analytics_enable' => $this->input->post('google_analytics_enable'),
+                'google_api_key' => $this->input->post('google_api_key')
             );
 
             if($settings_data) {

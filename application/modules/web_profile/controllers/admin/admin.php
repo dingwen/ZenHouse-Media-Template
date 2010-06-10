@@ -7,12 +7,10 @@ class Admin extends Admin_Controller {
         parent::__construct();
         
         $this->load->helpers(array('path', 'file'));
-        $this->load->library('cache');
         $this->load->model('web_profile_m');
 
-        $this->template->set_partial('google_cdn', 'fragments/jquery_cdn', FALSE);
         $this->template->append_metadata(js('admin/jquery.ajaxupload.js'));
-
+        
         $this->validation_rules = array(
             array(
                 'field'   => 'name',
@@ -63,7 +61,7 @@ class Admin extends Admin_Controller {
     }
 
     public function index() {
-        $profile_data = $this->web_profile_m->get_profile();
+        $profile_data = $this->web_profile_m->get_first();
 
         $this->form_validation->set_rules($this->validation_rules);
 

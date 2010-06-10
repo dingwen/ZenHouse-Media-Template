@@ -1,3 +1,10 @@
 ZenHouse Media Template Site
 
-Please wait for further information.
+Setup:
+
+1. Folder Permissions
+
+Set 777 to application/cache
+Set 777 to application/uploads
+
+2. Put default data in web_profile, web_settings, contact

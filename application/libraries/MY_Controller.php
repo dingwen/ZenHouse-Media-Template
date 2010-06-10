@@ -9,4 +9,20 @@ class MY_Controller extends Controller {
         $global['application_uri'] 	= APPPATH_URI;
         $this->load->vars('global', $global);
     }
+
+    public function get_web_settings() {
+        $settings = $this->cache->get('web_settings');
+        if(!empty($settings)) {
+            return $settings;
+        }
+        return FALSE;
+    }
+
+    public function get_web_profile() {
+        $settings = $this->cache->get('web_profile');
+        if(!empty($settings)) {
+            return $settings;
+        }
+        return FALSE;
+    }
 }
