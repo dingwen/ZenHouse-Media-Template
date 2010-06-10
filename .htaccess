@@ -3,10 +3,6 @@
 	Options +FollowSymLinks
 	RewriteEngine on
 
-	# NOTICE: If you get a 404 play with combinations of the following commented out lines
-	#AllowOverride All
-	#RewriteBase /wherever/pyro/is
-
 	# Keep people out of codeigniter directory and Git/Mercurial data
 	RedirectMatch 403 ^/(application\/cache|codeigniter|\.git|\.hg).*$
 

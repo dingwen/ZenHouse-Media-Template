@@ -18,6 +18,7 @@ class Admin_Controller extends MY_Controller {
         $this->template->append_metadata(css('admin/admin.css'))->append_metadata(js('admin/admin.js'));
 
         // set general page partial elements.
+        $this->template->set_partial('google_cdn', 'fragments/jquery_cdn', FALSE);
         $this->template->set_partial('header', 'admin/partials/header', FALSE);
 		$this->template->set_partial('nav', 'admin/partials/nav', FALSE);
         $this->template->set_partial('footer', 'admin/partials/footer', FALSE);

@@ -24,22 +24,15 @@ body {
 #header {
     width: 100%;
     min-height: 100px;
+    background-color: #F1EFF1;
     color: #CCC9AD;
-	background:url(../../images/logo.png) no-repeat top left;
-	background-color: #F1EFF1;
 }
 
 #header h1 {
-	text-indent:-999999px;
-}
-
-#header h2{
-	/* CSS3 */
+    /* CSS3 */
     text-shadow: -1px 2px 2px #403F36;
     padding: 0;
-    margin: 0 10px 0 0;	
-	text-align:right;
-
+    margin: 0 0 0 10px;
 }
 
 #nav {
@@ -79,32 +72,11 @@ body {
 #content-wrapper {
     position: relative;
 	padding:20px;
-	background:url(../../images/mandala.jpg) no-repeat top right ;
 }
 
-#content-list, #form{
-	width:455px;
-	background:#F1EFF1;
-	min-height:350px;
-	height:auto !important;
-    height:350px;
-	padding:20px;
-	border: 1px solid #B9B7B9;
+#content-list{
+	width:600px;	
 }
-/*-----------------------Layout for the Forms--------------------------*/
-
-#form label{width:150px; float:left;}
-
-#form input{width:300px; margin:0 0 10px 0;}
-
-#form textarea{width:453px; font-family:Arial, Helvetica, sans-serif; font-size:13px; margin:0 0 10px 0;}
-
-
-#sub-categories{
-	background:#F1EFF1;	
-}
-
-#sub-categories input {width: 130px;}
 
 #left-col, #right-col, #mid-col {
     width: 100%;

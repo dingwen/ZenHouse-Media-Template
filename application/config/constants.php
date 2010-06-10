@@ -71,10 +71,5 @@ define('APPPATH_URI', BASE_URI.APPPATH);
 // We dont need these variables any more
 unset($base_uri, $base_url);
 
-/**
- * Localhost Google API Key. Need to change when the site is on the server.
- */
-define('GOOGLE_API_KEY', 'ABQIAAAAFlh71Oercit9GK4zUpZOvBT2yXp_ZAY8_ufC3CFXhHIE1NvwkxTupV_x0t8y-7f-UXDJdAiN6HvYtQ');
-
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

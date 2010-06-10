@@ -1,7 +1,7 @@
 <?php if($this->session->flashdata('error')): ?>
 <div class="message error">
     <h4>Error!</h4>
-    <p>Can't not perform requested action!</p>
+    <p>Can not perform requested action!</p>
     <a href="#" class="close">close</a>
 </div>
 <?php endif; ?>

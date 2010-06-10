@@ -1,4 +1,3 @@
 <div id="header">
-	<h1>ZenHouse Media Backend Template System</h1>
-    <h2>Admin Backend</h2>
+	<h1>This is Header</h1>
 </div>
