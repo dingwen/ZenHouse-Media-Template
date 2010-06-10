@@ -6,7 +6,7 @@ class Admin extends Admin_Controller {
         $this->load->model('contact_m');
 		
 		//Add a css link in head section
-		//$this->template->append_metadata(css('admin/form.css'));
+		$this->template->append_metadata(css('admin/form.css'));
 
         $this->validation_rules = array(
             array(
