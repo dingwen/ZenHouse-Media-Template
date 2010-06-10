@@ -43,6 +43,34 @@ INSERT INTO `categories` VALUES (16,1,'cate 7'),(15,2,'cate 6'),(13,2,'cate 4'),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `web_settings`
+--
+
+DROP TABLE IF EXISTS `web_settings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `web_settings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categories_enable` tinyint(1) DEFAULT '0',
+  `sharethis` text,
+  `sharethis_enable` tinyint(1) DEFAULT '0',
+  `google_analytics` varchar(20) DEFAULT '',
+  `google_analytics_enable` tinyint(1) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `web_settings`
+--
+
+LOCK TABLES `web_settings` WRITE;
+/*!40000 ALTER TABLE `web_settings` DISABLE KEYS */;
+INSERT INTO `web_settings` VALUES (1,1,'<script type=\"text/javascript\" src=\"http://w.sharethis.com/button/sharethis.js#publisher=b86c897d-fff1-4bb6-9981-82d9351341bd&amp;type=website&amp;post_services=email%2Cfacebook%2Ctwitter%2Cgbuzz%2Cmyspace%2Cdigg%2Csms%2Cwindows_live%2Cdelicious%2Cstumbleupon%2Creddit%2Cgoogle_bmarks%2Clinkedin%2Cbebo%2Cybuzz%2Cblogger%2Cyahoo_bmarks%2Cmixx%2Ctechnorati%2Cfriendfeed%2Cpropeller%2Cwordpress%2Cnewsvine\"></script>',0,'UA-16845399-1',1);
+/*!40000 ALTER TABLE `web_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `web_profile`
 --
 
@@ -83,4 +111,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-06-09 16:03:01
+-- Dump completed on 2010-06-09 20:24:42

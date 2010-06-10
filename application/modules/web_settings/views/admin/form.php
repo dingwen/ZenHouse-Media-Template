@@ -2,10 +2,7 @@
     <form action="<?php echo site_url(uri_string()); ?>" method="post">
         <div>
             <label>Enable Categories Module? </label>
-            <?php
-                $checked = set_checkbox('categories_enable', $settings->categories_enable);
-                echo form_checkbox('categories_enable', '1', empty($checked));
-            ?>
+            <?php echo form_checkbox('categories_enable', '1', set_value('categories_enable', $settings->categories_enable)); ?>
         </div>
         <div>
             <label>ShareThis Button Code</label>
@@ -13,21 +10,15 @@
         </div>
         <div>
             <label>Enable ShareThis?</label>
-            <?php
-                $checked = set_checkbox('sharethis_enable', $settings->sharethis_enable);
-                echo form_checkbox('sharethis_enable', '1', $checked);
-            ?>
+            <?php echo form_checkbox('sharethis_enable', '1', set_value('sharethis_enable', $settings->sharethis_enable)); ?>
         </div>
         <div>
             <label>Google Analytics Web Property ID</label>
-            <?php echo form_textarea('google_analytics', set_value('google_analytics', $settings->google_analytics)); ?>
+            <?php echo form_input('google_analytics', set_value('google_analytics', $settings->google_analytics)); ?>
         </div>
         <div>
             <label>Enable Google Analytics?</label>
-            <?php
-                $checked = set_checkbox('google_analytics_enable', $settings->google_analytics_enable);
-                echo form_checkbox('google_analytics_enable', '1', empty($checked));
-            ?>
+            <?php echo form_checkbox('google_analytics_enable', '1', set_value('google_analytics_enable', $settings->google_analytics_enable)); ?>
         </div>
         <div>
             <input type="submit" value="Submit" name="submit" />

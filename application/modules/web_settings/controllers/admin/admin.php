@@ -22,7 +22,7 @@ class Admin extends Admin_Controller {
             array(
                 'field' => 'sharethis_enable',
                 'label' => 'Enable ShareThis',
-                'rules' => 'max_length[1]|numeric'
+                'rules' => 'max_length[1]|numeric|callback_check_sharethis'
             ),
             array(
                 'field' => 'google_analytics',
@@ -31,15 +31,13 @@ class Admin extends Admin_Controller {
             ),array(
                 'field' => 'google_analytics_enable',
                 'label' => 'Enable Google Analytics',
-                'rules' => 'max_length[1]|numeric'
+                'rules' => 'max_length[1]|numeric|callback_check_ga'
             )
         );
 	}
 	
 	public function index() {
         $settings_data = $this->web_settings_m->get_first();
-
-        $this->console->log($settings_data);
 
         $this->form_validation->set_rules($this->validation_rules);
 
@@ -82,4 +80,30 @@ class Admin extends Admin_Controller {
         $this->data->settings =& $settings;
 		$this->template->build('admin/form', $this->data);
 	}
+
+    public function check_sharethis($str) {
+        if($str == '1') {
+            if(empty($_POST['sharethis'])) {
+                $this->form_validation->set_message('check_sharethis', 'Can not enable %s if no code is input.');
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        } else {
+            return TRUE;
+        }
+    }
+
+    public function check_ga($str) {
+        if($str == '1') {
+            if(empty($_POST['google_analytics'])) {
+                $this->form_validation->set_message('check_ga', 'Can not enable %s if no property ID is input.');
+                return FALSE;
+            } else {
+                return TRUE;
+            }
+        } else {
+            return TRUE;
+        }
+    }
 }
