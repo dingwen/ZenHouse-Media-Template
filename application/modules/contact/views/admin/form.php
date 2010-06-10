@@ -8,7 +8,7 @@
             <legend>Contact Information</legend>
             <div>
                 <label>Unit No.</label>
-                <?php echo '# ' . form_input('unit_no', set_value('unit_no', $contact->unit_no)); ?>
+                <?php echo '# ' . form_input('unit_no', set_value('unit_no', $contact->unit_no), 'class="small"'); ?>
             </div>
             <div>
                 <label>Address</label>
