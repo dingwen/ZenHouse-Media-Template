@@ -1,58 +1,55 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Admin extends Admin_Controller {
-	public function __construct() {
-		parent::__construct();
+    public function __construct() {
+        parent::__construct();
 
         $this->load->model('web_settings_m');
+		
+		//Add a css link in head section
+		$this->template->append_metadata(css('admin/form.css'));
 
         $this->validation_rules = array(
-            array(
-                'field' => 'categories_enable',
-                'label' => 'Enable Categories Module',
-                'rules' => 'max_length[1]|numeric'
-            ),
-            array(
-                'field' => 'sharethis',
-                'label' => 'ShareThis Button Code',
-                'rules' => 'trim'
-            ),
-            array(
-                'field' => 'sharethis_enable',
-                'label' => 'Enable ShareThis',
-                'rules' => 'max_length[1]|numeric|callback_check_sharethis'
-            ),
-            array(
-                'field' => 'google_analytics',
-                'label' => 'Google Analytics Web Property ID',
-                'rules' => 'trim'
-            ),
-            array(
-                'field' => 'google_analytics_enable',
-                'label' => 'Enable Google Analytics',
-                'rules' => 'max_length[1]|numeric|callback_check_ga'
-            ),
-            array(
-                'field' => 'google_api_key',
-                'label' => 'Google API Key',
-                'rules' => 'trim|alpha_dash'
-            )
+                array(
+                        'field' => 'categories_enable',
+                        'label' => 'Enable Categories Module',
+                        'rules' => 'max_length[1]|numeric'
+                ),
+                array(
+                        'field' => 'sharethis',
+                        'label' => 'ShareThis Button Code',
+                        'rules' => 'trim'
+                ),
+                array(
+                        'field' => 'sharethis_enable',
+                        'label' => 'Enable ShareThis',
+                        'rules' => 'max_length[1]|numeric|callback_check_sharethis'
+                ),
+                array(
+                        'field' => 'google_analytics',
+                        'label' => 'Google Analytics Web Property ID',
+                        'rules' => 'trim'
+                ),
+                array(
+                        'field' => 'google_analytics_enable',
+                        'label' => 'Enable Google Analytics',
+                        'rules' => 'max_length[1]|numeric|callback_check_ga'
+                ),
+                array(
+                        'field' => 'google_api_key',
+                        'label' => 'Google API Key',
+                        'rules' => 'trim|alpha_dash'
+                )
         );
-	}
-	
-	public function index() {
+    }
+
+    public function index() {
         $settings_data = $this->web_settings_m->get_first();
 
         $this->form_validation->set_rules($this->validation_rules);
 
         if($this->form_validation->run()) {
-            $temp_data = array(
-                'categories_enable' => $this->input->post('categories_enable'),
-                'sharethis' => $this->input->post('sharethis'),
-                'sharethis_enable' => $this->input->post('sharethis_enable'),
-                'google_analytics' => $this->input->post('google_analytics'),
-                'google_analytics_enable' => $this->input->post('google_analytics_enable'),
-                'google_api_key' => $this->input->post('google_api_key')
-            );
+            $temp_data = $_POST;
+            unset($temp_data['submit']);
 
             if($settings_data) {
                 $result = $this->web_settings_m->update($settings_data['id'], $temp_data);
@@ -82,8 +79,8 @@ class Admin extends Admin_Controller {
         }
 
         $this->data->settings =& $settings;
-		$this->template->build('admin/form', $this->data);
-	}
+        $this->template->build('admin/form', $this->data);
+    }
 
     public function check_sharethis($str) {
         if($str == '1') {

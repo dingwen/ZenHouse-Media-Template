@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*-----------------------Layout for the Forms--------------------------*/
+
+div{margin:0 0 3px 0;}
+
+#form label{width:35%; height:22px; line-height:22px;}
+
+#form input.long{width:65%; float:right;}
+
+#form input.small{width:40%; float:right;}
+
+#form textarea{font-family:Arial, Helvetica, sans-serif; margin:0 0 10px 0;}
+
+#form textarea.medium{width:453px; height: 100px; font-size:13px;}
+
+#form textarea.short{width:453px; height: 50px; font-family:Arial, Helvetica, sans-serif; font-size:13px;}
+
+
+

@@ -8,6 +8,9 @@ class Admin extends Admin_Controller {
         
         $this->load->helpers(array('path', 'file'));
         $this->load->model('web_profile_m');
+		
+		//Add a css link in head section
+		$this->template->append_metadata(css('admin/form.css'));
 
         $this->template->append_metadata(js('admin/jquery.ajaxupload.js'));
         
