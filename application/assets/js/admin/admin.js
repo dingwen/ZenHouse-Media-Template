@@ -1,10 +1,9 @@
-(function($){
+(function($) {
     $(function() {
         $('a.close').click(function() {
             $(this).parents('.message').hide('fast');
             return false;
         });
-
         confirm_popup();
     });
     function confirm_popup() {

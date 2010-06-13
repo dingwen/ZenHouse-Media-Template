@@ -3,9 +3,14 @@
     <head>
         <meta charset="utf-8">
         <title><?php echo $template['title']; ?></title>
-        <?php if (!empty($template['partials']['google_cdn'])): ?>
+        <script type="text/javascript">
+            var APPPATH_URI = "<?php echo APPPATH_URI;?>";
+            var BASE_URL = "<?php echo base_url();?>";
+            var BASE_URI = "<?php echo BASE_URI;?>";
+        </script>
+    <?php if (!empty($template['partials']['google_cdn'])): ?>
         <?php echo $template['partials']['google_cdn']; ?>
-        <?php endif; ?>
+    <?php endif; ?>
         <?php echo $template['metadata']; ?>
     </head>
     <body>

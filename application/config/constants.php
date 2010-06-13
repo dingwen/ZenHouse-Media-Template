@@ -71,5 +71,13 @@ define('APPPATH_URI', BASE_URI.APPPATH);
 // We dont need these variables any more
 unset($base_uri, $base_url);
 
+/*
+|--------------------------------------------------------------------------
+| AJAX HTTP Request
+|--------------------------------------------------------------------------
+*/
+
+define('IS_AJAX', isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest');
+
 /* End of file constants.php */
 /* Location: ./system/application/config/constants.php */

@@ -1,13 +1,14 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Admin extends Admin_Controller {
 
-    protected $validation_rules;
+    protected $validation_rules = array();
 
     public function __construct() {
         parent::__construct();
+
         $this->load->model('categories_m');
         $this->template->set_partial('side_menu', 'admin/side_menu');
-        $this->template->set_partial('google_cdn', 'fragments/jquery_cdn', FALSE);
+        
         $this->data->main_categories = $this->categories_m->get_main();
 
         $this->validation_rules = array(
@@ -26,7 +27,9 @@ class Admin extends Admin_Controller {
     }
 
     public function index() {
-        $this->template->append_metadata(css('admin/dataTable.css'))->append_metadata(js('admin/jquery.dataTables.min.js'));
+        $this->template->append_metadata(css('admin/dataTable.css'))
+                ->append_metadata(js('index.js', 'categories'))
+                ->append_metadata(js('admin/jquery.dataTables.min.js'));
         $this->template->build('admin/index', $this->data);
     }
 

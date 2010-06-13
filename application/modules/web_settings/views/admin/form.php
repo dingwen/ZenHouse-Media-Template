@@ -1,3 +1,4 @@
+<h2>Web Settings</h2>
 <div id="form">
     <form action="<?php echo site_url(uri_string()); ?>" method="post">
         <div>
