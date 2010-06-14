@@ -12,7 +12,6 @@ class Social_media_links_m extends MY_Model {
         foreach($temp as $item) {
             $types[$item] = ucfirst($item);
         }
-
         return $types;
     }
 }

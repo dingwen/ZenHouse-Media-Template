@@ -1,4 +1,4 @@
-<?php if($this->session->flashdata('error')): ?>
+<?php if($this->session->flashdata('error') OR (isset($error) AND !empty($error))): ?>
 <div class="message error">
     <h4>Error!</h4>
     <p>Can not perform requested action!</p>
@@ -14,7 +14,7 @@
 </div>
     <?php endif; ?>
 <?php endif; ?>
-<?php if($this->session->flashdata('success')): ?>
+<?php if($this->session->flashdata('success') OR (isset($success) AND !empty($success))): ?>
 <div class="message success">
     <h4>Success!</h4>
     <p>The action is performed successfully.</p>

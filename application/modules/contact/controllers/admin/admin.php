@@ -130,11 +130,72 @@ class Admin extends Admin_Controller {
 
     public function edit_social_media() {
         $this->data->types = $this->sm_links_m->get_social_media_types_dd();
+        $this->data->links = $this->sm_links_m->get_all();
+
+        $this->template->append_metadata(js('social_media_form.js', 'contact'))
+                ->append_metadata(css('admin/dataTable.css'))
+                ->append_metadata(js('admin/jquery.dataTables.min.js'));
         $this->template->build('admin/social_media_form', $this->data);
     }
 
-    public function process_social_media() {
-        
+    public function add_social_media() {
+        $this->form_validation->set_rules($this->validation_rules['edit_social_media']);
+        $success = $this->form_validation->run();
+        $result_msg = array();
+
+        if($success) {
+            $temp_data = $_POST;
+            unset($temp_data['submit']);
+
+            $id = $temp_data['id'];
+            unset($temp_data['id']);
+
+            if($id > 1) {
+                $result = $this->sm_links_m->update($id, $temp_data);
+            } else {
+                $result = $this->sm_links_m->insert($temp_data);
+            }
+
+            if ($result) {
+                $result_msg['message'] = $this->load->view('admin/result_messages', array('success' => TRUE), TRUE);
+                $result_msg['links'] = $this->get_all_social_media();
+            } else {
+                $result_msg['message'] = $this->load->view('admin/result_messages', array('error' => TRUE), TRUE);
+                $result_msg['links'] = "error";
+            }
+        } else {
+            $result_msg['message'] = $this->load->view('admin/result_messages', array(), TRUE);
+            $result_msg['links'] = "error";
+        }
+
+        echo json_encode($result_msg);
+    }
+
+    public function get_social_media($id = 0) {
+        if($id < 1) {
+            echo "";
+        } else {
+            echo json_encode($this->sm_links_m->get_by_id($id));
+        }
+    }
+
+    public function get_all_social_media() {
+        $data['links'] = $this->sm_links_m->get_all();
+        return $this->load->view('admin/social_media_list',$data, TRUE);
+    }
+
+    public function delete_social_media($id = 0) {
+        if($id < 1) {
+            $this->session->set_flashdata('error', TRUE);
+            redirect('admin/contact/edit_social_media');
+        }
+
+        if ($this->sm_links_m->delete($id)) {
+            $this->session->set_flashdata('success', TRUE);
+        } else {
+            $this->session->set_flashdata('error', TRUE);
+        }
+        redirect('admin/contact/edit_social_media');
     }
 
     public function check_postcode($str) {
