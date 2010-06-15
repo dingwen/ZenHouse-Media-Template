@@ -30,30 +30,16 @@
                 <label>Postal/Zip Code</label>
                 <?php echo form_input('postcode', set_value('postcode', $contact->postcode), 'class="long"'); ?>
             </div>
+            <?php for($i = 0; $i < $phone_limit; $i++): ?>
             <div>
                 <label>Phone Number</label>
                 <?php if($have_phones) {
-                        echo form_input('phones[]', set_value('phones[0]', $contact->phones[0]), 'class="long"');
+                        echo form_input('phones[]', set_value('phones[' . $i . ']', $contact->phones[$i]), 'class="long"');
                     } else {
                         echo form_input('phones[]', set_value('phones[]', $contact->phones), 'class="long"');
                     } ?>
             </div>
-            <div>
-                <label>Phone Number</label>
-                <?php if($have_phones) {
-                        echo form_input('phones[]', set_value('phones[1]', $contact->phones[1]), 'class="long"');
-                    } else {
-                        echo form_input('phones[]', set_value('phones[]', $contact->phones), 'class="long"');
-                    } ?>
-            </div>
-            <div>
-                <label>Phone Number</label>
-                <?php if($have_phones) {
-                        echo form_input('phones[]', set_value('phones[2]', $contact->phones[2]), 'class="long"');
-                    } else {
-                        echo form_input('phones[]', set_value('phones[]', $contact->phones), 'class="long"');
-                    } ?>
-            </div>
+            <?php endfor; ?>
         </fieldset>
         <fieldset>
             <legend>Contact Form Preset</legend>
@@ -64,30 +50,16 @@
         </fieldset>
         <fieldset>
             <legend>Emails</legend>
+            <?php for($i = 0; $i < $email_limit; $i++): ?>
             <div>
                 <label>Email</label>
                 <?php if($have_emails) {
-                        echo form_input('emails[]', set_value('emails[0]', $contact->emails[0]), 'class="long"');
+                        echo form_input('emails[]', set_value('emails[' . $i . ']', $contact->emails[$i]), 'class="long"');
                     } else {
                         echo form_input('emails[]', set_value('emails[]', $contact->emails), 'class="long"');
                     } ?>
             </div>
-            <div>
-                <label>Email</label>
-                <?php if($have_emails) {
-                        echo form_input('emails[]', set_value('emails[1]', $contact->emails[1]), 'class="long"');
-                    } else {
-                        echo form_input('emails[]', set_value('emails[]', $contact->emails), 'class="long"');
-                    } ?>
-            </div>
-            <div>
-                <label>Email</label>
-                <?php if($have_emails) {
-                        echo form_input('emails[]', set_value('emails[2]', $contact->emails[2]), 'class="long"');
-                    } else {
-                        echo form_input('emails[]', set_value('emails[]', $contact->emails), 'class="long"');
-                    } ?>
-            </div>
+            <?php endfor; ?>
         </fieldset>
         <div>
             <input type="submit" value="Submit" name="submit" class="submit_btn"/>

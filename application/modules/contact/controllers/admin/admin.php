@@ -124,6 +124,8 @@ class Admin extends Admin_Controller {
             }
         }
 
+        $this->data->phone_limit = $this->contact_m->get_phone_limit();
+        $this->data->email_limit = $this->contact_m->get_email_limit();
         $this->data->contact =& $contact;
 		$this->template->build('admin/form', $this->data);
 	}

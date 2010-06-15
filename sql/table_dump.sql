@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 14, 2010 at 06:32 PM
+-- Generation Time: Jun 15, 2010 at 01:59 AM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -16,9 +16,46 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `artists`
+--
+
+DROP TABLE IF EXISTS `artists`;
+CREATE TABLE IF NOT EXISTS `artists` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) NOT NULL DEFAULT '',
+  `last_name` varchar(50) NOT NULL DEFAULT '',
+  `emails` varchar(250) NOT NULL DEFAULT '["","",""]',
+  `photo` varchar(250) NOT NULL DEFAULT '',
+  `bio` text,
+  `unit_no` varchar(6) NOT NULL DEFAULT '',
+  `address` varchar(250) NOT NULL DEFAULT '',
+  `city` varchar(45) NOT NULL DEFAULT '',
+  `region` varchar(45) NOT NULL DEFAULT '',
+  `country` varchar(45) NOT NULL DEFAULT '',
+  `postcode` varchar(10) NOT NULL DEFAULT '',
+  `phones` varchar(250) NOT NULL DEFAULT '[["",""],["",""],["",""]]',
+  `addtional_title` varchar(250) NOT NULL DEFAULT '',
+  `addtional_content` text,
+  `meta_keywords` varchar(250) NOT NULL DEFAULT '',
+  `meta_title` varchar(250) NOT NULL DEFAULT '',
+  `meta_description` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `artists`
+--
+
+INSERT INTO `artists` (`id`, `first_name`, `last_name`, `emails`, `photo`, `bio`, `unit_no`, `address`, `city`, `region`, `country`, `postcode`, `phones`, `addtional_title`, `addtional_content`, `meta_keywords`, `meta_title`, `meta_description`) VALUES
+(1, 'Ding Wen', 'Chen', '["a@b.com","a@b.com",""]', 'Vancouver-2010-Robson-Square.jpg', 'Creates an opening form tag with a base URL built from your config preferences. It will optionally let you add form attributes and hidden input fields.<br><br>The main benefit of using this tag rather than hard coding your own HTML is that it permits your site to be more portable in the event your URLs ever change.', '12345', '4500 Kingsway', 'Burnaby', 'BC', 'Canada', 'V5A 5G5', '[["cell","6041234567"],["fax",""],["phone","6041234567"]]', 'Some Title', 'Creates an opening form tag with a base URL built from your config preferences. It will optionally let you add form attributes and hidden input fields.<br><br>The main benefit of using this tag rather than hard coding your own HTML is that it permits your site to be more portable in the event your URLs ever change.', '', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -58,6 +95,7 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`) VALUES
 -- Table structure for table `contact`
 --
 
+DROP TABLE IF EXISTS `contact`;
 CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit_no` varchar(6) NOT NULL DEFAULT '',
@@ -77,7 +115,7 @@ CREATE TABLE IF NOT EXISTS `contact` (
 --
 
 INSERT INTO `contact` (`id`, `unit_no`, `address`, `city`, `region`, `country`, `postcode`, `phones`, `subject`, `emails`) VALUES
-(1, '12345', '4000 Kingsway', 'Burnaby', 'BC', 'Canada', 'V5A 5G5', '["1231234567","","1231234567"]', '', '["a@b.com","","a@b.com"]');
+(1, '12345', '4000 Kingsway', 'Burnaby', 'BC', 'Canada', 'V5A 5G5', '["1231234567","adsfasd","1231234567"]', '', '["a@b.com","","a@b.com"]');
 
 -- --------------------------------------------------------
 
@@ -85,6 +123,7 @@ INSERT INTO `contact` (`id`, `unit_no`, `address`, `city`, `region`, `country`, 
 -- Table structure for table `social_media_links`
 --
 
+DROP TABLE IF EXISTS `social_media_links`;
 CREATE TABLE IF NOT EXISTS `social_media_links` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(250) NOT NULL DEFAULT 'Socail Media',
@@ -110,6 +149,7 @@ INSERT INTO `social_media_links` (`id`, `text`, `type`, `url`) VALUES
 -- Table structure for table `web_profile`
 --
 
+DROP TABLE IF EXISTS `web_profile`;
 CREATE TABLE IF NOT EXISTS `web_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL DEFAULT '',
@@ -137,6 +177,7 @@ INSERT INTO `web_profile` (`id`, `name`, `tagline`, `welcome_title`, `welcome_me
 -- Table structure for table `web_settings`
 --
 
+DROP TABLE IF EXISTS `web_settings`;
 CREATE TABLE IF NOT EXISTS `web_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categories_enable` tinyint(1) DEFAULT '0',
