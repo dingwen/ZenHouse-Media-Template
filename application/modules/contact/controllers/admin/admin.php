@@ -16,65 +16,53 @@ class Admin extends Admin_Controller {
         $this->validation_rules = array(
             'edit_contact' => array(
                 array(
-                    'field'   => 'unit_no',
-                    'label'   => 'Unit No',
+                    'field'   => 'unit_no', 'label'   => 'Unit No',
                     'rules'   => 'trim|required|max_length[6]|numeric'
                 ),
                 array(
-                    'field'   => 'address',
-                    'label'   => 'Address',
+                    'field'   => 'address', 'label'   => 'Address',
                     'rules'   => 'trim|required|max_length[250]'
                 ),
                 array(
-                    'field'   => 'city',
-                    'label'   => 'City',
+                    'field'   => 'city', 'label'   => 'City',
                     'rules'   => 'trim|required|max_length[45]'
                 ),
                 array(
-                    'field'   => 'region',
-                    'label'   => 'Province/State',
+                    'field'   => 'region', 'label'   => 'Province/State',
                     'rules'   => 'trim|required|max_length[45]'
                 ),
                 array(
-                    'field'   => 'country',
-                    'label'   => 'Country',
+                    'field'   => 'country', 'label'   => 'Country',
                     'rules'   => 'trim|required|max_length[45]'
                 ),
                 array(
-                    'field'   => 'postcode',
-                    'label'   => 'Postal/Zip Code',
+                    'field'   => 'postcode', 'label'   => 'Postal/Zip Code',
                     'rules'   => 'trim|required|max_length[8]|callback_check_postcode'
                 ),
                 array(
-                    'field'   => 'subject',
-                    'label'   => 'Contact Form Subject',
+                    'field'   => 'subject', 'label'   => 'Contact Form Subject',
                     'rules'   => 'trim|max_length[250]'
                 ),
                 array(
-                    'field'   => 'emails[]',
-                    'label'   => 'Emails',
+                    'field'   => 'emails[]', 'label'   => 'Emails',
                     'rules'   => 'trim|max_length[250]|callback_check_emails'
                 ),
                 array(
-                    'field'   => 'phones[]',
-                    'label'   => 'Contact Form Subject',
+                    'field'   => 'phones[]', 'label'   => 'Contact Form Subject',
                     'rules'   => 'trim|max_length[11]'
                 )
             ),
             'edit_social_media' => array(
                 array(
-                    'field'   => 'type',
-                    'label'   => 'Social Media Type',
+                    'field'   => 'type', 'label'   => 'Social Media Type',
                     'rules'   => 'trim|required'
                 ),
                 array(
-                    'field'   => 'text',
-                    'label'   => 'Social Media Type',
+                    'field'   => 'text', 'label'   => 'Social Media Type',
                     'rules'   => 'trim|required|min_length[3]|max_length[40]'
                 ),
                 array (
-                    'field'   => 'url',
-                    'label'   => 'Social Media URL',
+                    'field'   => 'url', 'label'   => 'Social Media URL',
                     'rules'   => 'trim|required|max_length[250]'
                 )
             )
@@ -132,7 +120,7 @@ class Admin extends Admin_Controller {
 
     public function edit_social_media() {
         $this->data->types = $this->sm_links_m->get_social_media_types_dd();
-        $this->data->links = $this->sm_links_m->get_all();
+        $this->data->links = $this->sm_links_m->get_many_by(array('parent' => 'contact'));
 
         $this->template->append_metadata(js('social_media_form.js', 'contact'))
                 ->append_metadata(css('admin/dataTable.css'))
@@ -151,6 +139,8 @@ class Admin extends Admin_Controller {
 
             $id = $temp_data['id'];
             unset($temp_data['id']);
+
+            $temp_data['parent'] = "contact";
 
             if($id > 1) {
                 $result = $this->sm_links_m->update($id, $temp_data);
@@ -182,7 +172,7 @@ class Admin extends Admin_Controller {
     }
 
     public function get_all_social_media() {
-        $data['links'] = $this->sm_links_m->get_all();
+        $data['links'] = $this->sm_links_m->get_many_by(array('parent' => 'contact'));
         return $this->load->view('admin/social_media_list',$data, TRUE);
     }
 

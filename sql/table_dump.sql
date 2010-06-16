@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2010 at 01:59 AM
+-- Generation Time: Jun 15, 2010 at 05:24 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -19,7 +19,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `artists`
 --
 
-DROP TABLE IF EXISTS `artists`;
 CREATE TABLE IF NOT EXISTS `artists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) NOT NULL DEFAULT '',
@@ -55,7 +54,6 @@ INSERT INTO `artists` (`id`, `first_name`, `last_name`, `emails`, `photo`, `bio`
 -- Table structure for table `categories`
 --
 
-DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -95,7 +93,6 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`) VALUES
 -- Table structure for table `contact`
 --
 
-DROP TABLE IF EXISTS `contact`;
 CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit_no` varchar(6) NOT NULL DEFAULT '',
@@ -123,25 +120,27 @@ INSERT INTO `contact` (`id`, `unit_no`, `address`, `city`, `region`, `country`, 
 -- Table structure for table `social_media_links`
 --
 
-DROP TABLE IF EXISTS `social_media_links`;
 CREATE TABLE IF NOT EXISTS `social_media_links` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(250) NOT NULL DEFAULT 'Socail Media',
   `type` varchar(20) NOT NULL DEFAULT '',
   `url` varchar(250) NOT NULL DEFAULT '',
+  `parent` varchar(20) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `social_media_links`
 --
 
-INSERT INTO `social_media_links` (`id`, `text`, `type`, `url`) VALUES
-(2, 'Ding-Wen Chen Twitter', 'facebook', 'http://twitter.com/dwchen'),
-(4, 'DW Chen Twitter', 'youtube', 'http://twitter.com/dwchen'),
-(5, 'DW Chen Twitter', 'twitter', 'http://twitter.com/dwchen'),
-(6, 'DW Chen Twitter', 'myspace', 'http://twitter.com/dwchen'),
-(7, 'DW YouTube Chanel', 'youtube', 'http://youtube.ca');
+INSERT INTO `social_media_links` (`id`, `text`, `type`, `url`, `parent`) VALUES
+(2, 'Ding-Wen Chen Twitter', 'facebook', 'http://twitter.com/dwchen', 'contact'),
+(4, 'DW Chen Twitter', 'youtube', 'http://twitter.com/dwchen', 'contact'),
+(5, 'DW Chen Twitter', 'twitter', 'http://twitter.com/dwchen', 'contact'),
+(6, 'DW Chen Twitter', 'myspace', 'http://twitter.com/dwchen', 'contact'),
+(7, 'DW YouTube Chanel', 'youtube', 'http://youtube.ca', 'contact'),
+(9, 'asdf Facebook club', 'facebook', 'http://www.facebook.com/dingwen.chen', 'contact'),
+(10, 'DW Chen', 'twitter', 'http://www.facebook.com/dingwen.chen', 'single_artist');
 
 -- --------------------------------------------------------
 
@@ -149,7 +148,6 @@ INSERT INTO `social_media_links` (`id`, `text`, `type`, `url`) VALUES
 -- Table structure for table `web_profile`
 --
 
-DROP TABLE IF EXISTS `web_profile`;
 CREATE TABLE IF NOT EXISTS `web_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL DEFAULT '',
@@ -177,7 +175,6 @@ INSERT INTO `web_profile` (`id`, `name`, `tagline`, `welcome_title`, `welcome_me
 -- Table structure for table `web_settings`
 --
 
-DROP TABLE IF EXISTS `web_settings`;
 CREATE TABLE IF NOT EXISTS `web_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categories_enable` tinyint(1) DEFAULT '0',
