@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 15, 2010 at 05:24 PM
+-- Generation Time: Jun 18, 2010 at 03:48 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
 INSERT INTO `categories` (`id`, `parent_id`, `name`) VALUES
 (16, 1, 'cate 7'),
 (15, 2, 'cate 6'),
+(3, 0, 'news'),
 (12, 2, 'cate 3'),
 (10, 1, 'cate 1'),
 (2, 0, 'events'),
@@ -77,8 +78,8 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`) VALUES
 (17, 1, 'cate 8'),
 (18, 1, 'cate 9'),
 (19, 1, 'cate 10'),
-(20, 1, 'cate 11'),
-(21, 1, 'cate 12'),
+(20, 3, 'cate 11'),
+(21, 3, 'cate 12'),
 (22, 1, 'cate 13'),
 (23, 1, 'some cate 14'),
 (25, 1, 'cate 16'),
@@ -113,6 +114,38 @@ CREATE TABLE IF NOT EXISTS `contact` (
 
 INSERT INTO `contact` (`id`, `unit_no`, `address`, `city`, `region`, `country`, `postcode`, `phones`, `subject`, `emails`) VALUES
 (1, '12345', '4000 Kingsway', 'Burnaby', 'BC', 'Canada', 'V5A 5G5', '["1231234567","adsfasd","1231234567"]', '', '["a@b.com","","a@b.com"]');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE IF NOT EXISTS `news` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `category` varchar(20) NOT NULL DEFAULT '',
+  `content` text,
+  `publish_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `status` varchar(5) NOT NULL DEFAULT 'draft',
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `meta_keywords` varchar(250) NOT NULL DEFAULT '',
+  `meta_title` varchar(250) NOT NULL DEFAULT '',
+  `meta_description` varchar(250) NOT NULL DEFAULT '',
+  `uri` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `category`, `content`, `publish_date`, `status`, `timestamp`, `meta_keywords`, `meta_title`, `meta_description`, `uri`) VALUES
+(1, 'Server-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2010-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
+(2, 'erver-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2009-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
+(3, 'rver-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2010-06-15 11:54:00', 'live', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
+(4, 'processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2011-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
+(5, 'Testing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2011-06-16 17:54:00', 'live', '2010-06-17 19:37:14', '', '', '', 'Testing');
 
 -- --------------------------------------------------------
 

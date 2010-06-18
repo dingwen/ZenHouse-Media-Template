@@ -272,10 +272,4 @@ class FirePHP {
   public function getEnabled() {
     return $this->enabled;
   }
-  
-  /**
-   * Specify a filter to be used when encoding an object
-   * 
-   * Filters are used to exclude object members.
-   * 
-   * @param
+}

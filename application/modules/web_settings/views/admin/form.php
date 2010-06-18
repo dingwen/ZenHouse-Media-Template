@@ -27,7 +27,6 @@
         </div>
         <div>
             <input type="submit" value="Submit" name="submit" class="submit_btn"/>
-            <?php echo anchor(site_url('admin/web_settings'), 'Cancel'); ?>
         </div>
     </form>
 </div>

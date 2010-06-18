@@ -41,7 +41,6 @@
         </div>
         <div>
             <input type="submit" value="Submit" name="submit" class="publish_btn"/>
-            <?php echo anchor(site_url('admin/web_profile'), 'Cancel'); ?>
         </div>
     </form>
 </div>

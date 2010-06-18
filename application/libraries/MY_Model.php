@@ -59,4 +59,55 @@ class MY_Model extends Model {
         }
         return FALSE;
     }
+
+    public function count_all() {
+        return $this->db->count_all($this->table);
+    }
+
+    public function get_for_datatable($sort_cols = array(), $offset = 0, $limit = 0, $sort = array(), $filter = "") {
+        if(empty($sort_cols)) { return FALSE; }
+
+        $this->db->select($sort_cols);
+
+        $cols = array();
+        if(!empty($filter)) {
+            foreach($sort_cols as $col) {
+                $cols[$col] = $filter;
+            }
+            $this->db->or_like($cols);
+        }
+
+        $data_count = $this->count_filtered_data($cols);
+
+        if($data_count <= 0) { return FALSE; }
+
+        if(!empty($sort)) {
+            foreach($sort as $order) {
+                $this->db->order_by($sort_cols[$order[0]], $order[1]);
+            }
+        }
+
+        if($offset > 0 AND $limit > -1) {
+            $this->db->limit($limit, $offset);
+        }
+
+        $query = $this->db->get($this->table);
+        if($query->num_rows() > 0) {
+
+            $rows = array_values($query->result_array());
+            foreach($rows as $row) {
+                $table_row[] = array_values($row);
+            }
+            return array($data_count, $table_row);
+        }
+        return FALSE;
+    }
+
+    public function count_filtered_data($cols = array()){
+        if(empty($cols)) {
+            return $this->count_all();
+        }
+        $query = $this->db->or_like($cols)->get($this->table);
+        return $query->num_rows();
+    }
 }
