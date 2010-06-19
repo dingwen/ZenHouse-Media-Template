@@ -7,7 +7,7 @@ class Admin_Controller extends MY_Controller {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
-        
+
         // Template configuration
         $this->template->set_layout('admin/layout');
         $this->template->enable_parser(FALSE);
