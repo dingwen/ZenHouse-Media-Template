@@ -77,7 +77,6 @@ class Admin extends Admin_Controller {
             $result = $this->news_m->insert($temp_data);
 
             if ($result) {
-                $this->cache->write($temp_data, 'web_profile');
                 $this->session->set_flashdata('success', TRUE);
             } else {
                 $this->session->set_flashdata('error', TRUE);
@@ -91,6 +90,9 @@ class Admin extends Admin_Controller {
             $news->{$rule['field']} = set_value($rule['field']);
         }
         $this->data->news =& $news;
+        $this->data->page = "create";
+        $this->template->append_metadata(js('tiny_mce/jquery.tinymce.js'))
+                ->append_metadata(js('tiny_mce/tiny_mce.js'));
         $this->template->build('admin/form', $this->data);
     }
 
@@ -103,11 +105,12 @@ class Admin extends Admin_Controller {
             foreach ($news_data as $field => $value) {
                 $news->{$field} = $value;
             }
-            $this->data->news = & $news;
+            $this->data->news =& $news;
         } else {
             redirect('admin/news');
         }
 
+        $this->data->page = "edit";
         $this->template->build('admin/form', $this->data);
     }
 
@@ -155,6 +158,7 @@ class Admin extends Admin_Controller {
 
         if($this->data->category_enable) {
             foreach ($result as $row) {
+                if(!empty($row[1])) { $row[1] = $this->data->categories[$row[1]]; }
                 $status = $row[3];
                 $id = $row[4];
                 $row[3] = form_dropdown('status', array('draft' => 'draft', 'live' => 'live'), $status, 'id="' . $id . '"');

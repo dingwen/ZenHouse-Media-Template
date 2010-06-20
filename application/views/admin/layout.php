@@ -7,6 +7,7 @@
             var APPPATH_URI = "<?php echo APPPATH_URI;?>";
             var BASE_URL = "<?php echo base_url();?>";
             var BASE_URI = "<?php echo BASE_URI;?>";
+            var ASSETS_URI = "<?php echo BASE_URI . 'application/assets/';?>";
         </script>
     <?php if (!empty($template['partials']['google_cdn'])): ?>
         <?php echo $template['partials']['google_cdn']; ?>
