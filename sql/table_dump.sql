@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 18, 2010 at 03:48 PM
+-- Generation Time: Jun 24, 2010 at 10:29 PM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -16,9 +16,53 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `abouts`
+--
+
+DROP TABLE IF EXISTS `abouts`;
+CREATE TABLE IF NOT EXISTS `abouts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `category` varchar(45) NOT NULL DEFAULT '',
+  `status` varchar(10) NOT NULL DEFAULT 'draft',
+  `content` text,
+  `meta_keywords` varchar(250) NOT NULL DEFAULT '',
+  `meta_title` varchar(250) NOT NULL DEFAULT '',
+  `meta_description` varchar(250) NOT NULL DEFAULT '',
+  `slug` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `abouts`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `about_categories_order`
+--
+
+DROP TABLE IF EXISTS `about_categories_order`;
+CREATE TABLE IF NOT EXISTS `about_categories_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categories_order` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `about_categories_order`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `artists`
 --
 
+DROP TABLE IF EXISTS `artists`;
 CREATE TABLE IF NOT EXISTS `artists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `first_name` varchar(50) NOT NULL DEFAULT '',
@@ -54,6 +98,7 @@ INSERT INTO `artists` (`id`, `first_name`, `last_name`, `emails`, `photo`, `bio`
 -- Table structure for table `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
@@ -94,6 +139,7 @@ INSERT INTO `categories` (`id`, `parent_id`, `name`) VALUES
 -- Table structure for table `contact`
 --
 
+DROP TABLE IF EXISTS `contact`;
 CREATE TABLE IF NOT EXISTS `contact` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `unit_no` varchar(6) NOT NULL DEFAULT '',
@@ -118,9 +164,49 @@ INSERT INTO `contact` (`id`, `unit_no`, `address`, `city`, `region`, `country`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `events`
+--
+
+DROP TABLE IF EXISTS `events`;
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(250) NOT NULL DEFAULT '',
+  `subtitle` varchar(250) NOT NULL DEFAULT '',
+  `category` varchar(45) NOT NULL DEFAULT '',
+  `description` text,
+  `start_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `end_time` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `image` varchar(250) NOT NULL DEFAULT '',
+  `ticket_price` decimal(6,2) NOT NULL DEFAULT '0.00',
+  `where_to_purchase` varchar(250) NOT NULL DEFAULT '',
+  `where` varchar(250) NOT NULL DEFAULT '',
+  `unit_no` varchar(6) NOT NULL DEFAULT '',
+  `address` varchar(250) NOT NULL DEFAULT '',
+  `city` varchar(45) NOT NULL DEFAULT '',
+  `region` varchar(45) NOT NULL DEFAULT '',
+  `country` varchar(45) NOT NULL DEFAULT '',
+  `postcode` varchar(8) NOT NULL DEFAULT '',
+  `phones` varchar(250) NOT NULL DEFAULT '{"","",""}',
+  `status` varchar(10) NOT NULL DEFAULT 'draft',
+  `meta_keywords` varchar(250) NOT NULL DEFAULT '',
+  `meta_title` varchar(250) NOT NULL DEFAULT '',
+  `meta_description` varchar(250) NOT NULL DEFAULT '',
+  `slug` varchar(250) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `events`
+--
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `news`
 --
 
+DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(250) NOT NULL DEFAULT '',
@@ -132,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `meta_keywords` varchar(250) NOT NULL DEFAULT '',
   `meta_title` varchar(250) NOT NULL DEFAULT '',
   `meta_description` varchar(250) NOT NULL DEFAULT '',
-  `uri` varchar(250) NOT NULL DEFAULT '',
+  `slug` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
@@ -140,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `news` (
 -- Dumping data for table `news`
 --
 
-INSERT INTO `news` (`id`, `title`, `category`, `content`, `publish_date`, `status`, `timestamp`, `meta_keywords`, `meta_title`, `meta_description`, `uri`) VALUES
+INSERT INTO `news` (`id`, `title`, `category`, `content`, `publish_date`, `status`, `timestamp`, `meta_keywords`, `meta_title`, `meta_description`, `slug`) VALUES
 (1, 'Server-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2010-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
 (2, 'erver-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2009-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
 (3, 'rver-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2010-06-15 11:54:00', 'live', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
@@ -153,6 +239,7 @@ INSERT INTO `news` (`id`, `title`, `category`, `content`, `publish_date`, `statu
 -- Table structure for table `social_media_links`
 --
 
+DROP TABLE IF EXISTS `social_media_links`;
 CREATE TABLE IF NOT EXISTS `social_media_links` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `text` varchar(250) NOT NULL DEFAULT 'Socail Media',
@@ -181,6 +268,7 @@ INSERT INTO `social_media_links` (`id`, `text`, `type`, `url`, `parent`) VALUES
 -- Table structure for table `web_profile`
 --
 
+DROP TABLE IF EXISTS `web_profile`;
 CREATE TABLE IF NOT EXISTS `web_profile` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(250) NOT NULL DEFAULT '',
@@ -208,6 +296,7 @@ INSERT INTO `web_profile` (`id`, `name`, `tagline`, `welcome_title`, `welcome_me
 -- Table structure for table `web_settings`
 --
 
+DROP TABLE IF EXISTS `web_settings`;
 CREATE TABLE IF NOT EXISTS `web_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `categories_enable` tinyint(1) DEFAULT '0',
