@@ -4,7 +4,16 @@ Setup:
 
 1. Folder Permissions
 
-Set 777 to application/cache
-Set 777 to application/uploads
+    Set 777 to application/cache
+    Set 777 to application/uploads and sub-folders
 
 2. Put default data in web_profile, web_settings, contact
+
+3. Setup TinyMCE PDW File Browser
+
+    Change the $uploadpath according to the hosting server setting.
+
+    /pdw_file_browser/config.php
+
+    $uploadpath = '/zhm/application/uploads/assets/';
+                  ----------------------------------

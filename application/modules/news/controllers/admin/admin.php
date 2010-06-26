@@ -92,7 +92,8 @@ class Admin extends Admin_Controller {
         $this->data->news =& $news;
         $this->data->page = "create";
         $this->template->append_metadata(js('tiny_mce/jquery.tinymce.js'))
-                ->append_metadata(js('tiny_mce/tiny_mce.js'));
+                ->append_metadata(js('tiny_mce/tiny_mce.js'))
+                ->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE));
         $this->template->build('admin/form', $this->data);
     }
 
