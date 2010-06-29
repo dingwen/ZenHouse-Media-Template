@@ -145,8 +145,25 @@
             "aoColumns" : [null, null, null, { "bSortable" : false, "bSearchable" : false }],
         <?php endif; ?>
             "fnDrawCallback" : function() {
+                update_status();
                 $('a.confirm').click(function() { return confirm("Are you sure to delete these items?"); });
             }
         }).fnSetFilteringDelay();
+
+        function update_status() {
+            $('select[name="status"]').bind('change keyup', function(){
+                $.post(BASE_URL + "admin/news/update_status",
+                {
+                    id: $(this).attr('id'),
+                    status: $(this).val()
+                }, function(data) {
+                    if(data == "updated") {
+                        alert("Status is updated." + data);
+                    } else {
+                        alert("Can't update status" + data);
+                    }
+                });
+            });
+        }
     });
 </script>

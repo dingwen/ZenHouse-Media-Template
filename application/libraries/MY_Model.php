@@ -53,7 +53,7 @@ class MY_Model extends Model {
         return $this->db->delete($this->table, array('id' => $id));
     }
 
-    public function check_duplicate($where = array()) {
+    public function check_duplicate($where = array(), $id = 0) {
         if($this->get_many_by($where)) {
             return TRUE;
         }

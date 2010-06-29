@@ -23,4 +23,8 @@ class Admin_Controller extends MY_Controller {
 		$this->template->set_partial('nav', 'admin/partials/nav', FALSE);
         $this->template->set_partial('footer', 'admin/partials/footer', FALSE);
     }
+
+    public function title_to_slug($title = "") {
+        return preg_replace('/[^a-zA-Z0-9]/', "-", $title);
+    }
 }

@@ -1,7 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Admin extends Admin_Controller {
 
-    protected $validation_rules = array();
+    protected $validation_rules;
+    protected $category_id;
 
     public function __construct() {
         parent::__construct();
@@ -24,6 +25,8 @@ class Admin extends Admin_Controller {
                 )
 
         );
+
+        $this->category_id = 0;
     }
 
     public function index() {
@@ -67,6 +70,7 @@ class Admin extends Admin_Controller {
     public function edit($main_id = 0, $sub_id = 0) {
         if(($main_id <= 0) AND ($sub_id <= 0)) { redirect('admin/categories'); }
 
+        $this->category_id = $sub_id;
         $this->form_validation->set_rules($this->validation_rules);
 
         if($this->form_validation->run()) {
@@ -115,9 +119,10 @@ class Admin extends Admin_Controller {
     }
 
     public function category_name_check($name) {
-        if($this->categories_m->check_duplicate(array('parent_id' => $this->data->main_id, 'name' => $name))) {
-            $this->form_validation->set_message('category_name_check', 'The category name is used. Use another one');
+        if($this->categories_m->check_duplicate(array('parent_id' => $this->data->main_id, 'name' => $name, 'id !=' => $this->category_id))) {
+            $this->form_validation->set_message('category_name_check', 'The category name exists. Please pick another one');
             return FALSE;
         }
+        return TRUE;
     }
 }

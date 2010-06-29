@@ -1,7 +1,8 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Admin extends Admin_Controller {
 
-    protected $validation_rules = array();
+    protected $validation_rules;
+    protected $news_id;
 
     public function __construct() {
         parent::__construct();
@@ -21,17 +22,17 @@ class Admin extends Admin_Controller {
             array(
                 "field" => "title",
                 "label" => "Title",
-                "rule" => "trim|required|min_length[3]|max_length[250]"
+                "rules" => "trim|required|min_length[3]|max_length[250]|callback_title_check"
             ),
             array(
                 "field" => "category",
                 "label" => "Category",
-                "rule" => ""
+                "rules" => ""
             ),
             array(
                 "field" => "content",
                 "label" => "News Content",
-                "rule" => "trim|required|min_length[20]"
+                "rules" => "trim|required|min_length[20]"
             ),
             array(
                 'field'   => 'meta_keywords',
@@ -49,6 +50,8 @@ class Admin extends Admin_Controller {
                 'rules'   => 'trim|max_length[250]'
             )
         );
+
+        $this->news_id = 0;
     }
 
     public function index() {
@@ -73,7 +76,8 @@ class Admin extends Admin_Controller {
                 $temp_data['status'] = 'draft';
                 unset($temp_data['draft']);
             }
-
+            $temp_data['slug'] = $this->title_to_slug($temp_data['title']);
+            
             $result = $this->news_m->insert($temp_data);
 
             if ($result) {
@@ -84,7 +88,6 @@ class Admin extends Admin_Controller {
 
             redirect('admin/news');
         }
-
 
         foreach($this->validation_rules as $rule) {
             $news->{$rule['field']} = set_value($rule['field']);
@@ -100,6 +103,24 @@ class Admin extends Admin_Controller {
     public function edit($id = 0) {
         if ($id < 1) { redirect(site_url('admin/news')); }
 
+        $this->news_id = $id;
+        $this->form_validation->set_rules($this->validation_rules);
+
+        if($this->form_validation->run()) {
+            $temp_data = $_POST;
+            unset($temp_data['update']);
+            $temp_data['slug'] = $this->title_to_slug($temp_data['title']);
+
+            $result = $this->news_m->update($id, $temp_data);
+            if ($result) {
+                $this->session->set_flashdata('success', TRUE);
+            } else {
+                $this->session->set_flashdata('error', TRUE);
+            }
+
+            redirect('admin/news');
+        }
+
         $news_data = $this->news_m->get_by_id($id);
 
         if ($news_data) {
@@ -112,6 +133,9 @@ class Admin extends Admin_Controller {
         }
 
         $this->data->page = "edit";
+        $this->template->append_metadata(js('tiny_mce/jquery.tinymce.js'))
+                ->append_metadata(js('tiny_mce/tiny_mce.js'))
+                ->append_metadata($this->load->view('fragments/wysiwyg', array(), TRUE));
         $this->template->build('admin/form', $this->data);
     }
 
@@ -179,4 +203,27 @@ class Admin extends Admin_Controller {
         return $processed;
     }
 
+    public function update_status() {
+        $id = $this->input->post('id');
+        $status = $this->input->post('status');
+
+        if($id > 0) {
+            $result = $this->news_m->update($id, array('status' => $status));
+            if($result) {
+                echo "updated";
+            } else {
+                echo "error";
+            }
+        } else {
+            echo "error";
+        }
+    }
+
+    public function title_check($title) {
+        if($this->news_m->check_duplicate(array('title' => $title, 'id !=' => $this->news_id))) {
+            $this->form_validation->set_message('title_check', 'The title exists. Please pick another one.');
+            return FALSE;
+        }
+        return TRUE;
+    }
 }
