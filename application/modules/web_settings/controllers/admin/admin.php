@@ -13,11 +13,6 @@ class Admin extends Admin_Controller {
 
         $this->validation_rules = array(
                 array(
-                        'field' => 'categories_enable',
-                        'label' => 'Enable Categories Module',
-                        'rules' => 'max_length[1]|numeric'
-                ),
-                array(
                         'field' => 'sharethis',
                         'label' => 'ShareThis Button Code',
                         'rules' => 'trim'

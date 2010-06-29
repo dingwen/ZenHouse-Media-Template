@@ -6,7 +6,6 @@ class Social_media_links_m extends MY_Model {
     }
 
     public function get_social_media_types_dd() {
-        $this->config->load('zhm_config');
         $temp = $this->config->item('social_meida_types');
         $types = array();
         foreach($temp as $item) {

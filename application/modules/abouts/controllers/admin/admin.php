@@ -1,24 +1,21 @@
-<?php
-
-if (!defined('BASEPATH'))
-    exit('No direct script access allowed');
-
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Admin extends Admin_Controller {
 
     protected $validation_rules;
-    protected $news_id;
+    protected $abouts_id;
 
     public function __construct() {
         parent::__construct();
 
-        $this->data->category_enable = & $this->category_enable;
+        $this->load->config('zhm_config');
+        $this->data->category_enable = $this->config->item('categories_enable');
 
         $this->template->set_partial('side_menu', 'admin/side_menu');
 
-        $this->load->model('news_m');
-        if ($this->category_enable) {
+        $this->load->model('abouts_m');
+        if ($this->data->category_enable) {
             $this->load->model('categories/categories_m');
-            $this->data->categories = $this->categories_m->get_sub_by_main_name('news');
+            $this->data->categories = $this->categories_m->get_sub_by_main_name('about');
         }
 
         $this->validation_rules = array(
@@ -34,27 +31,27 @@ class Admin extends Admin_Controller {
             ),
             array(
                 "field" => "content",
-                "label" => "News Content",
+                "label" => "Abouts Content",
                 "rules" => "trim|required|min_length[20]"
             ),
             array(
-                'field' => 'meta_keywords',
-                'label' => 'Meta Keywords',
-                'rules' => 'trim|max_length[250]'
+                'field'   => 'meta_keywords',
+                'label'   => 'Meta Keywords',
+                'rules'   => 'trim|max_length[250]'
             ),
             array(
-                'field' => 'meta_title',
-                'label' => 'Meta Title',
-                'rules' => 'trim|max_length[250]'
+                'field'   => 'meta_title',
+                'label'   => 'Meta Title',
+                'rules'   => 'trim|max_length[250]'
             ),
             array(
-                'field' => 'meta_description',
-                'label' => 'Meta Description',
-                'rules' => 'trim|max_length[250]'
+                'field'   => 'meta_description',
+                'label'   => 'Meta Description',
+                'rules'   => 'trim|max_length[250]'
             )
         );
 
-        $this->news_id = 0;
+        $this->abouts_id = 0;
     }
 
     public function index() {
@@ -67,21 +64,14 @@ class Admin extends Admin_Controller {
     public function create() {
         $this->form_validation->set_rules($this->validation_rules);
 
-        if ($this->form_validation->run()) {
+        if($this->form_validation->run()) {
             $temp_data = $_POST;
-
-            if (isset($_POST['publish'])) {
-                $temp_data['publish_date'] = date('Y-m-d H:i:s');
-                $temp_data['status'] = 'live';
-                unset($temp_data['publish']);
-            } else if (isset($_POST['draft'])) {
-                $temp_data['publish_date'] = '0000-00-00 00:00:00';
-                $temp_data['status'] = 'draft';
-                unset($temp_data['draft']);
-            }
+            unset($temp_data['submit']);
+            
             $temp_data['slug'] = $this->title_to_slug($temp_data['title']);
-
-            $result = $this->news_m->insert($temp_data);
+            $temp_data['status'] = 'live';
+            
+            $result = $this->abouts_m->insert($temp_data);
 
             if ($result) {
                 $this->session->set_flashdata('success', TRUE);
@@ -89,13 +79,13 @@ class Admin extends Admin_Controller {
                 $this->session->set_flashdata('error', TRUE);
             }
 
-            redirect('admin/news');
+            redirect('admin/abouts');
         }
 
-        foreach ($this->validation_rules as $rule) {
-            $news->{$rule['field']} = set_value($rule['field']);
+        foreach($this->validation_rules as $rule) {
+            $abouts->{$rule['field']} = set_value($rule['field']);
         }
-        $this->data->news = & $news;
+        $this->data->abouts=& $abouts;
         $this->data->page = "create";
         $this->template->append_metadata(js('tiny_mce/jquery.tinymce.js'))
                 ->append_metadata(js('tiny_mce/tiny_mce.js'))
@@ -104,37 +94,37 @@ class Admin extends Admin_Controller {
     }
 
     public function edit($id = 0) {
-        if ($id < 1) {
-            redirect(site_url('admin/news'));
-        }
+        if ($id < 1) { redirect(site_url('admin/abouts')); }
 
-        $this->news_id = $id;
+        $this->abouts_id = $id;
         $this->form_validation->set_rules($this->validation_rules);
 
-        if ($this->form_validation->run()) {
+        if($this->form_validation->run()) {
             $temp_data = $_POST;
-            unset($temp_data['update']);
+            unset($temp_data['submit']);
+
             $temp_data['slug'] = $this->title_to_slug($temp_data['title']);
 
-            $result = $this->news_m->update($id, $temp_data);
+            $result = $this->abouts_m->update($id, $temp_data);
+            
             if ($result) {
                 $this->session->set_flashdata('success', TRUE);
             } else {
                 $this->session->set_flashdata('error', TRUE);
             }
 
-            redirect('admin/news');
+            redirect('admin/abouts');
         }
 
-        $news_data = $this->news_m->get_by_id($id);
+        $abouts_data = $this->abouts_m->get_by_id($id);
 
-        if ($news_data) {
-            foreach ($news_data as $field => $value) {
-                $news->{$field} = $value;
+        if ($abouts_data) {
+            foreach ($abouts_data as $field => $value) {
+                $abouts->{$field} = $value;
             }
-            $this->data->news = & $news;
+            $this->data->abouts =& $abouts;
         } else {
-            redirect('admin/news');
+            redirect('admin/abouts');
         }
 
         $this->data->page = "edit";
@@ -145,13 +135,13 @@ class Admin extends Admin_Controller {
     }
 
     public function delete($id = 0) {
-        if ($this->news_m->delete($id)) {
+        if ($this->abouts_m->delete($id)) {
             $this->session->set_flashdata('success', TRUE);
         } else {
             $this->session->set_flashdata('error', TRUE);
         }
 
-        redirect('admin/news');
+        redirect('admin/abouts');
     }
 
     public function datatable() {
@@ -170,9 +160,9 @@ class Admin extends Admin_Controller {
         }
 
         $datatable['sEcho'] = intval($this->input->get_post('sEcho'));
-        $datatable['iTotalRecords'] = $this->news_m->count_all();
+        $datatable['iTotalRecords'] = $this->abouts_m->count_all();
 
-        $result = $this->news_m->get_news_datatable($offset, $limit, $sort, $filter);
+        $result = $this->abouts_m->get_abouts_datatable($offset, $limit, $sort, $filter);
         if ($result) {
             $datatable['iTotalDisplayRecords'] = $result[0];
             $datatable['aaData'] = $this->process_result($result[1]);
@@ -186,23 +176,21 @@ class Admin extends Admin_Controller {
     private function process_result($result) {
         $processed = array();
 
-        if ($this->category_enable) {
+        if($this->category_enable) {
             foreach ($result as $row) {
-                if (!empty($row[1])) {
-                    $row[1] = $this->data->categories[$row[1]];
-                }
-                $status = $row[3];
-                $id = $row[4];
-                $row[3] = form_dropdown('status', array('draft' => 'draft', 'live' => 'live'), $status, 'id="' . $id . '"');
-                $row[4] = anchor(site_url('admin/news/edit/' . $id), 'edit') . ' ' . anchor(site_url('admin/news/delete/' . $id), 'delete', 'class="confirm"');
+                if(!empty($row[1])) { $row[1] = $this->data->categories[$row[1]]; }
+                $status = $row[2];
+                $id = $row[3];
+                $row[2] = form_dropdown('status', array('draft' => 'draft', 'live' => 'live'), $status, 'id="' . $id . '"');
+                $row[3] = anchor(site_url('admin/abouts/edit/' . $id), 'edit') . ' ' . anchor(site_url('admin/abouts/delete/' . $id), 'delete', 'class="confirm"');
                 $processed[] = $row;
             }
         } else {
             foreach ($result as $row) {
-                $status = $row[2];
-                $id = $row[3];
-                $row[2] = form_dropdown('status', array('draft' => 'draft', 'live' => 'live'), $status, 'id="' . $id . '"');
-                $row[3] = anchor(site_url('admin/news/edit/' . $id), 'edit') . ' ' . anchor(site_url('admin/news/delete/' . $id), 'delete', 'class="confirm"');
+                $status = $row[1];
+                $id = $row[2];
+                $row[1] = form_dropdown('status', array('draft' => 'draft', 'live' => 'live'), $status, 'id="' . $id . '"');
+                $row[2] = anchor(site_url('admin/abouts/edit/' . $id), 'edit') . ' ' . anchor(site_url('admin/abouts/delete/' . $id), 'delete', 'class="confirm"');
                 $processed[] = $row;
             }
         }
@@ -214,9 +202,9 @@ class Admin extends Admin_Controller {
         $id = $this->input->post('id');
         $status = $this->input->post('status');
 
-        if ($id > 0) {
-            $result = $this->news_m->update($id, array('status' => $status));
-            if ($result) {
+        if($id > 0) {
+            $result = $this->abouts_m->update($id, array('status' => $status));
+            if($result) {
                 echo "updated";
             } else {
                 echo "error";
@@ -227,11 +215,10 @@ class Admin extends Admin_Controller {
     }
 
     public function title_check($title) {
-        if ($this->news_m->check_duplicate(array('title' => $title, 'id !=' => $this->news_id))) {
+        if($this->abouts_m->check_duplicate(array('title' => $title, 'id !=' => $this->abouts_id))) {
             $this->form_validation->set_message('title_check', 'The title exists. Please pick another one.');
             return FALSE;
         }
         return TRUE;
     }
-
 }

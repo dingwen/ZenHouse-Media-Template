@@ -2,10 +2,6 @@
 <div id="form">
     <form action="<?php echo site_url(uri_string()); ?>" method="post">
         <div>
-            <label>Enable Categories Module? </label>
-            <?php echo form_checkbox('categories_enable', '1', set_value('categories_enable', $settings->categories_enable)); ?>
-        </div>
-        <div>
             <label>ShareThis Button Code</label>
             <?php echo form_textarea('sharethis', set_value('sharethis', $settings->sharethis), 'class="medium"'); ?>
         </div>

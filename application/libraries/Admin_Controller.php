@@ -2,11 +2,15 @@
 class Admin_Controller extends MY_Controller {
 
     protected $data;
+    protected $category_enable;
 
     public function  __construct() {
         parent::__construct();
         $this->load->helper('form');
         $this->load->library('form_validation');
+
+        $this->load->config('zhm_config');
+        $this->category_enable = $this->config->item('categories_enable');
 
         // Template configuration
         $this->template->set_layout('admin/layout');

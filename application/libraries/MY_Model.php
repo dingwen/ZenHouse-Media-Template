@@ -2,9 +2,13 @@
 class MY_Model extends Model {
 
     protected $table = "";
+    protected $category_enable;
 
     public function __construct() {
         parent::Model();
+
+        $this->load->config('zhm_config');
+        $this->category_enable = $this->config->item('categories_enable');
     }
 
     public function get_all($sort = 'id', $order = 'asc') {

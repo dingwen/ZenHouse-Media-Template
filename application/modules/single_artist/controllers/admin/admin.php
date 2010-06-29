@@ -106,8 +106,8 @@ class Admin extends Admin_Controller {
 
     public function index() {
         $this->data->phone_types = $this->artists_m->get_artist_phone_types_dd();
-        $this->data->phone_limit = $this->artists_m->get_phone_limit();
-        $this->data->email_limit = $this->artists_m->get_email_limit();
+        $this->data->phone_limit = $this->config->item('phone_limit');
+        $this->data->email_limit = $this->config->item('email_limit');
         
         $profile_data = $this->artists_m->get_first();
 
