@@ -20,7 +20,7 @@ class categories_m extends MY_Model {
     public function get_sub_by_main_name($main = "", $by_weight = FALSE) {
         if(empty($main)) { return FALSE; }
         if($by_weight) {
-            $sql = "select cc.id as id, cc.name as name from `categories` c join `categories` cc on c.id = cc.parent_id where c.name = ? order by `weight`";
+            $sql = "select cc.id as id, cc.name as name, cc.weight as weight from `categories` c join `categories` cc on c.id = cc.parent_id where c.name = ? order by `weight`";
         } else {
             $sql = "select cc.id as id, cc.name as name from `categories` c join `categories` cc on c.id = cc.parent_id where c.name = ? order by `name`";
         }

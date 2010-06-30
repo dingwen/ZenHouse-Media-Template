@@ -1,4 +1,8 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
 class Admin extends Admin_Controller {
 
     protected $validation_rules;
@@ -8,12 +12,11 @@ class Admin extends Admin_Controller {
         parent::__construct();
 
         $this->load->config('zhm_config');
-        $this->data->category_enable = $this->config->item('categories_enable');
 
         $this->template->set_partial('side_menu', 'admin/side_menu');
 
         $this->load->model('abouts_m');
-        if ($this->data->category_enable) {
+        if ($this->category_enable) {
             $this->load->model('categories/categories_m');
             $this->data->categories = $this->categories_m->get_sub_by_main_name('about');
         }
@@ -35,19 +38,19 @@ class Admin extends Admin_Controller {
                 "rules" => "trim|required|min_length[20]"
             ),
             array(
-                'field'   => 'meta_keywords',
-                'label'   => 'Meta Keywords',
-                'rules'   => 'trim|max_length[250]'
+                'field' => 'meta_keywords',
+                'label' => 'Meta Keywords',
+                'rules' => 'trim|max_length[250]'
             ),
             array(
-                'field'   => 'meta_title',
-                'label'   => 'Meta Title',
-                'rules'   => 'trim|max_length[250]'
+                'field' => 'meta_title',
+                'label' => 'Meta Title',
+                'rules' => 'trim|max_length[250]'
             ),
             array(
-                'field'   => 'meta_description',
-                'label'   => 'Meta Description',
-                'rules'   => 'trim|max_length[250]'
+                'field' => 'meta_description',
+                'label' => 'Meta Description',
+                'rules' => 'trim|max_length[250]'
             )
         );
 
@@ -64,13 +67,13 @@ class Admin extends Admin_Controller {
     public function create() {
         $this->form_validation->set_rules($this->validation_rules);
 
-        if($this->form_validation->run()) {
+        if ($this->form_validation->run()) {
             $temp_data = $_POST;
             unset($temp_data['submit']);
-            
+
             $temp_data['slug'] = $this->title_to_slug($temp_data['title']);
             $temp_data['status'] = 'live';
-            
+
             $result = $this->abouts_m->insert($temp_data);
 
             if ($result) {
@@ -82,10 +85,10 @@ class Admin extends Admin_Controller {
             redirect('admin/abouts');
         }
 
-        foreach($this->validation_rules as $rule) {
+        foreach ($this->validation_rules as $rule) {
             $abouts->{$rule['field']} = set_value($rule['field']);
         }
-        $this->data->abouts=& $abouts;
+        $this->data->abouts = & $abouts;
         $this->data->page = "create";
         $this->template->append_metadata(js('tiny_mce/jquery.tinymce.js'))
                 ->append_metadata(js('tiny_mce/tiny_mce.js'))
@@ -94,19 +97,21 @@ class Admin extends Admin_Controller {
     }
 
     public function edit($id = 0) {
-        if ($id < 1) { redirect(site_url('admin/abouts')); }
+        if ($id < 1) {
+            redirect(site_url('admin/abouts'));
+        }
 
         $this->abouts_id = $id;
         $this->form_validation->set_rules($this->validation_rules);
 
-        if($this->form_validation->run()) {
+        if ($this->form_validation->run()) {
             $temp_data = $_POST;
             unset($temp_data['submit']);
 
             $temp_data['slug'] = $this->title_to_slug($temp_data['title']);
 
             $result = $this->abouts_m->update($id, $temp_data);
-            
+
             if ($result) {
                 $this->session->set_flashdata('success', TRUE);
             } else {
@@ -122,7 +127,7 @@ class Admin extends Admin_Controller {
             foreach ($abouts_data as $field => $value) {
                 $abouts->{$field} = $value;
             }
-            $this->data->abouts =& $abouts;
+            $this->data->abouts = & $abouts;
         } else {
             redirect('admin/abouts');
         }
@@ -145,13 +150,10 @@ class Admin extends Admin_Controller {
     }
 
     public function sort() {
-        if($this->category_enable) {
-            $this->data->categories_by_weight = $this->categories_m->get_sub_by_main_name('about', TRUE);
-        }
-        
+        $this->data->articles = $this->abouts_m->get_abouts_sort_list();
 
         $this->template->set_partial('google_cdn', 'fragments/jquery_ui_cdn', FALSE);
-        $this->template->build('admin/form', $this->data);
+        $this->template->build('admin/sort_articles', $this->data);
     }
 
     public function datatable() {
@@ -186,9 +188,11 @@ class Admin extends Admin_Controller {
     private function process_result($result) {
         $processed = array();
 
-        if($this->category_enable) {
+        if ($this->category_enable) {
             foreach ($result as $row) {
-                if(!empty($row[1])) { $row[1] = $this->data->categories[$row[1]]; }
+                if (!empty($row[1])) {
+                    $row[1] = $this->data->categories[$row[1]];
+                }
                 $status = $row[2];
                 $id = $row[3];
                 $row[2] = form_dropdown('status', array('draft' => 'draft', 'live' => 'live'), $status, 'id="' . $id . '"');
@@ -212,9 +216,9 @@ class Admin extends Admin_Controller {
         $id = $this->input->post('id');
         $status = $this->input->post('status');
 
-        if($id > 0) {
+        if ($id > 0) {
             $result = $this->abouts_m->update($id, array('status' => $status));
-            if($result) {
+            if ($result) {
                 echo "updated";
             } else {
                 echo "error";
@@ -224,11 +228,41 @@ class Admin extends Admin_Controller {
         }
     }
 
+    public function update_sort() {
+        $sorted_list = $this->input->post('list');
+        $count = count($sorted_list);
+
+        $str = "";
+
+        if ($this->category_enable) {
+            for ($i = 0; $i < $count; $i++) {
+                $category = & $sorted_list[$i]['category'];
+                $articles = & $sorted_list[$i]['articles'];
+                $count_articles = count($articles);
+                
+                $this->categories_m->update($category['id'], array('weight' => $i * 5));
+
+                $str .= "category id: ".$category['id']." weight ==> ".$i * 5;
+
+                for($j = 0; $j < $count_articles; $j++) {
+                    $this->abouts_m->update($articles[$j]['id'], array('weight' => $j * 5));
+                    $str .= "article id: ".$articles[$j]['id']." weight ==> ".$j * 5;
+                }
+            }
+        } else {
+            for ($i = 0; $i < $count; $i++) {
+                $this->abouts_m->update($sorted_list[$i]['id'], array('weight' => $i * 5));
+            }
+        }
+        echo $str;
+    }
+
     public function title_check($title) {
-        if($this->abouts_m->check_duplicate(array('title' => $title, 'id !=' => $this->abouts_id))) {
+        if ($this->abouts_m->check_duplicate(array('title' => $title, 'id !=' => $this->abouts_id))) {
             $this->form_validation->set_message('title_check', 'The title exists. Please pick another one.');
             return FALSE;
         }
         return TRUE;
     }
+
 }

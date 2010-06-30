@@ -11,6 +11,7 @@ class Admin_Controller extends MY_Controller {
 
         $this->load->config('zhm_config');
         $this->category_enable = $this->config->item('categories_enable');
+        $this->data->category_enable = $this->category_enable;
 
         // Template configuration
         $this->template->set_layout('admin/layout');
