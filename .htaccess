@@ -10,6 +10,8 @@
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
 
+    RewriteCond $1 !^(index\.php|img|css|js|assets|robots\.txt)
+
 	<IfModule mod_php5.c>
 		RewriteRule ^(.*)$ index.php/$1 [L]
 	</IfModule>

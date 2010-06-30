@@ -2,7 +2,6 @@
 class artists_m extends MY_Model {
     public function  __construct() {
         parent::__construct();
-        $this->config->load('zhm_config');
         $this->table = 'artists';
     }
 
@@ -21,13 +20,5 @@ class artists_m extends MY_Model {
             $types[$item] = ucfirst($item);
         }
         return $types;
-    }
-
-    public function get_phone_limit() {
-        return $this->config->item('artist_phone_limit');
-    }
-
-    public function get_email_limit() {
-        return $this->config->item('artist_email_limit');
     }
 }

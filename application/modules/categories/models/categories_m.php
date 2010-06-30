@@ -17,9 +17,13 @@ class categories_m extends MY_Model {
         return FALSE;
     }
 
-    public function get_sub_by_main_name($main = "") {
+    public function get_sub_by_main_name($main = "", $by_weight = FALSE) {
         if(empty($main)) { return FALSE; }
-        $sql = "select cc.id as id, cc.name as name from `categories` c join `categories` cc on c.id = cc.parent_id where c.name = ?";
+        if($by_weight) {
+            $sql = "select cc.id as id, cc.name as name from `categories` c join `categories` cc on c.id = cc.parent_id where c.name = ? order by `weight`";
+        } else {
+            $sql = "select cc.id as id, cc.name as name from `categories` c join `categories` cc on c.id = cc.parent_id where c.name = ? order by `name`";
+        }
         $query = $this->db->query($sql, array($main));
         if($query->num_rows() > 0) {
             $temp = array('' => 'Select a Categroy');
