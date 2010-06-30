@@ -18,4 +18,13 @@ class Abouts_m extends MY_Model {
             $offset, $limit, $sort, $filter
         );
     }
+
+    public function get_abouts_sort_list() {
+        if($this->category_enable) {
+            $this->db->select(array('id', 'title', 'category'));
+        } else {
+            $this->get_many_by(array('status'=>'live'), 'weight', 'asc', array('id', 'title'));
+        }
+        
+    }
 }

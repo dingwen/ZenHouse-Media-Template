@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 24, 2010 at 10:29 PM
+-- Generation Time: Jun 30, 2010 at 12:16 AM
 -- Server version: 5.1.33
 -- PHP Version: 5.2.9
 
@@ -30,31 +30,24 @@ CREATE TABLE IF NOT EXISTS `abouts` (
   `meta_title` varchar(250) NOT NULL DEFAULT '',
   `meta_description` varchar(250) NOT NULL DEFAULT '',
   `slug` varchar(250) NOT NULL DEFAULT '',
+  `weight` int(11) NOT NULL DEFAULT '-100',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `abouts`
 --
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `about_categories_order`
---
-
-DROP TABLE IF EXISTS `about_categories_order`;
-CREATE TABLE IF NOT EXISTS `about_categories_order` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categories_order` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `about_categories_order`
---
-
+INSERT INTO `abouts` (`id`, `title`, `category`, `status`, `content`, `meta_keywords`, `meta_title`, `meta_description`, `slug`, `weight`) VALUES
+(1, 'Drug testing is now part of CFL, players'' new collective agreement', '17', 'live', '<p>The Canadian Football League and the league''s players'' association have agreed on a new four-year collective bargaining agreement that will include year-round testing for performance enhancing drugs.<br />The terms of the agreement were revealed Tuesday at a joint news conference hosted by representatives of the CFL and the Canadian Football League Players'' Association.<br />"This CBA represents a major step forward for our league, and it is a testament to the spirit of partnership that exists between the CFL and the CFLPA, a partnership that flows out of a shared passion for our game and commitment to our fans," said Mark Cohon, commissioner of the CFL.<br />CFLPA President Stu Laird said the agreement represents progress for both sides and a renewed spirit of co-operation.<br />"We''re moving forward together under an agreement that helps our players and helps our league," Laird said.<br />For the first time, the Canadian Football League has a drug testing policy, with the first step introducing an education program for all players in 2010.<br />Random testing begins in 2011, with 25 per cent of all players tested that year, and 35 per cent to be tested in 2012 and 2013.<br />Upon a first offence, a player will automatically be subjected to mandatory testing and an assessment, followed by counselling.<br />A second offence triggers a three-game suspension, a third offence a one-year suspension, and a fourth offence a lifetime ban.<br />The agreement replaces the provision that had required the league to devote at least 56 per cent of defined gross revenue to players'' salaries with negotiated minimum team salary and annual increases in the salary cap.</p>', '', '', '', 'Drug-testing-is-now-part-of-CFL--players--new-collective-agreement', -100),
+(2, 'Testing 1', '17', 'live', '<p>Some content</p>', '', '', '', 'Testing-1', -100),
+(3, 'Testing 2', '17', 'live', '<p>Some content</p>', '', '', '', 'Testing-2', -100),
+(4, 'Testing 3', '10', 'live', '<p>Some content</p>', '', '', '', 'Testing-3', -100),
+(5, 'Testing 4', '10', 'live', '<p>Some content</p>', '', '', '', 'Testing-4', -100),
+(6, 'Testing 5', '10', 'live', '<p>Some content</p>', '', '', '', 'Testing-5', -100),
+(7, 'Testing 6', '23', 'live', '<p>Some content</p>', '', '', '', 'Testing-6', -100),
+(8, 'Testing 7', '23', 'live', '<p>Some content</p>', '', '', '', 'Testing-7', -100),
+(9, 'Testing 8', '23', 'live', '<p>Some content</p>', '', '', '', 'Testing-8', -100);
 
 -- --------------------------------------------------------
 
@@ -103,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT '0',
   `name` varchar(50) NOT NULL,
+  `weight` int(11) NOT NULL DEFAULT '-100',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
@@ -110,28 +104,28 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `parent_id`, `name`) VALUES
-(16, 1, 'cate 7'),
-(15, 2, 'cate 6'),
-(3, 0, 'news'),
-(12, 2, 'cate 3'),
-(10, 1, 'cate 1'),
-(2, 0, 'events'),
-(14, 1, 'cate 5'),
-(11, 1, 'cate 2'),
-(1, 0, 'about'),
-(17, 1, 'cate 8'),
-(18, 1, 'cate 9'),
-(19, 1, 'cate 10'),
-(20, 3, 'cate 11'),
-(21, 3, 'cate 12'),
-(22, 1, 'cate 13'),
-(23, 1, 'some cate 14'),
-(25, 1, 'cate 16'),
-(26, 1, 'cate 17'),
-(27, 1, 'cate 18'),
-(28, 2, 'new cate 12'),
-(29, 2, 'cate 1');
+INSERT INTO `categories` (`id`, `parent_id`, `name`, `weight`) VALUES
+(16, 1, 'cate 7', -100),
+(15, 2, 'cate 6', -100),
+(3, 0, 'news', -100),
+(12, 2, 'cate 3', -100),
+(10, 1, 'cate 1', -100),
+(2, 0, 'events', -100),
+(14, 1, 'cate 5', -100),
+(11, 1, 'cate 2', -100),
+(1, 0, 'about', -100),
+(17, 1, 'cate 8', -100),
+(18, 1, 'cate 9', -100),
+(19, 1, 'cate 10', -100),
+(20, 3, 'cate 11', -100),
+(21, 3, 'cate 12', -100),
+(22, 1, 'cate 13', -100),
+(23, 1, 'some cate 14', -100),
+(25, 2, 'cate 16', -100),
+(26, 1, 'cate 17', -100),
+(27, 1, 'cate 18', -100),
+(28, 2, 'new cate 12', -100),
+(29, 2, 'cate 1', -100);
 
 -- --------------------------------------------------------
 
@@ -220,18 +214,19 @@ CREATE TABLE IF NOT EXISTS `news` (
   `meta_description` varchar(250) NOT NULL DEFAULT '',
   `slug` varchar(250) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `category`, `content`, `publish_date`, `status`, `timestamp`, `meta_keywords`, `meta_title`, `meta_description`, `slug`) VALUES
-(1, 'Server-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2010-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
-(2, 'erver-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2009-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
-(3, 'rver-side processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2010-06-15 11:54:00', 'live', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
-(4, 'processing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2011-06-15 11:54:00', 'draft', '2010-06-17 19:37:14', '', '', '', 'Server-Side-processing'),
-(5, 'Testing', '', 'There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.', '2011-06-16 17:54:00', 'live', '2010-06-17 19:37:14', '', '', '', 'Testing');
+(1, 'Server-side processing', '', '<p>There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.</p>', '2010-06-15 11:54:00', 'live', '2010-06-28 17:09:31', '', '', '', 'Server-side-processing'),
+(2, 'erver-side processing', '', '<p>There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.</p>', '2009-06-15 11:54:00', 'live', '2010-06-28 17:56:30', '', '', '', 'erver-side-processing'),
+(3, 'Server''s Side Processing', '', '<p>There are times when reading data from the DOM is simply to slow or unwieldy, particularly when dealing with data sets of a thousand rows or more. To address this DataTables'' server-side processing feature provides a method to let all the "heavy lifting" be done by a database engine on the server-side (they are after-all highly optimised for exactly this kind of thing), and then have that information drawn in the user''s web-browser. As such you can display tables consisting of millions of rows with ease.</p>', '2010-06-15 11:54:00', 'draft', '2010-06-28 17:10:27', '', '', '', 'Server-s-Side-Processing'),
+(40, 'processing', '20', '', '2010-06-28 17:32:27', 'live', '2010-06-28 17:32:27', '', '', '', 'processing'),
+(41, 'Testing', '20', '', '2010-06-28 17:37:31', 'live', '2010-06-28 17:37:31', '', '', '', 'Testing'),
+(39, 'Problem with Uploadify', '20', '<p><img style="float: left; margin: 10px;" src="application/uploads/assets/Some Kinda Pasta.JPG" alt="" width="200" height="267" />We''ve been hearing about OnLive''s cloud-based service for more than a year now. The company claims it can offer the latest games on demand, without a need for meaty hardware requirements on the client end. Could this really be the end of high-end PCs?</p>', '2010-06-26 21:44:38', 'live', '2010-06-26 22:11:06', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -261,6 +256,29 @@ INSERT INTO `social_media_links` (`id`, `text`, `type`, `url`, `parent`) VALUES
 (7, 'DW YouTube Chanel', 'youtube', 'http://youtube.ca', 'contact'),
 (9, 'asdf Facebook club', 'facebook', 'http://www.facebook.com/dingwen.chen', 'contact'),
 (10, 'DW Chen', 'twitter', 'http://www.facebook.com/dingwen.chen', 'single_artist');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+DROP TABLE IF EXISTS `type`;
+CREATE TABLE IF NOT EXISTS `type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `dateadded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`id`, `name`, `dateadded`) VALUES
+(1, 'image', '0000-00-00 00:00:00'),
+(2, 'media', '0000-00-00 00:00:00'),
+(3, 'file', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -299,7 +317,6 @@ INSERT INTO `web_profile` (`id`, `name`, `tagline`, `welcome_title`, `welcome_me
 DROP TABLE IF EXISTS `web_settings`;
 CREATE TABLE IF NOT EXISTS `web_settings` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `categories_enable` tinyint(1) DEFAULT '0',
   `sharethis` text,
   `sharethis_enable` tinyint(1) DEFAULT '0',
   `google_analytics` varchar(20) DEFAULT '',
@@ -312,5 +329,5 @@ CREATE TABLE IF NOT EXISTS `web_settings` (
 -- Dumping data for table `web_settings`
 --
 
-INSERT INTO `web_settings` (`id`, `categories_enable`, `sharethis`, `sharethis_enable`, `google_analytics`, `google_analytics_enable`, `google_api_key`) VALUES
-(1, 1, '', 1, 'UA-16845399-1', 0, '');
+INSERT INTO `web_settings` (`id`, `sharethis`, `sharethis_enable`, `google_analytics`, `google_analytics_enable`, `google_api_key`) VALUES
+(1, '', 1, 'UA-16845399-1', 0, '');

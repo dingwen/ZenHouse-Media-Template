@@ -144,6 +144,16 @@ class Admin extends Admin_Controller {
         redirect('admin/abouts');
     }
 
+    public function sort() {
+        if($this->category_enable) {
+            $this->data->categories_by_weight = $this->categories_m->get_sub_by_main_name('about', TRUE);
+        }
+        
+
+        $this->template->set_partial('google_cdn', 'fragments/jquery_ui_cdn', FALSE);
+        $this->template->build('admin/form', $this->data);
+    }
+
     public function datatable() {
         $limit = $this->input->get_post('iDisplayLength');
         $offset = $this->input->get_post('iDisplayStart');
