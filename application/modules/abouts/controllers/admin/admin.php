@@ -233,6 +233,7 @@ class Admin extends Admin_Controller {
         $count = count($sorted_list);
 
         $str = "";
+        $result = null;
 
         if ($this->category_enable) {
             for ($i = 0; $i < $count; $i++) {
@@ -245,16 +246,19 @@ class Admin extends Admin_Controller {
                 $str .= "category id: ".$category['id']." weight ==> ".$i * 5;
 
                 for($j = 0; $j < $count_articles; $j++) {
-                    $this->abouts_m->update($articles[$j]['id'], array('weight' => $j * 5));
-                    $str .= "article id: ".$articles[$j]['id']." weight ==> ".$j * 5;
+                    $result = $this->abouts_m->update($articles[$j]['id'], array('weight' => $j * 5));
                 }
             }
         } else {
             for ($i = 0; $i < $count; $i++) {
-                $this->abouts_m->update($sorted_list[$i]['id'], array('weight' => $i * 5));
+                $result = $this->abouts_m->update($sorted_list[$i]['id'], array('weight' => $i * 5));
             }
         }
-        echo $str;
+        if ($result) {
+            echo $this->load->view('admin/result_messages', array('success' => TRUE), TRUE);
+        } else {
+            echo $this->load->view('admin/result_messages', array('error' => TRUE), TRUE);
+        }
     }
 
     public function title_check($title) {

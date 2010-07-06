@@ -1,4 +1,4 @@
-<div>
+<div id="list">
 <?php if(isset($articles) AND !empty($articles)): ?>
     <ul id="sortable">
     <?php if($category_enable): ?>
@@ -20,7 +20,6 @@
     <input type="button" value="Save" id="save_list" />
 <?php endif; ?>
 </div>
-<pre id="result"></pre>
 <?php if($category_enable): ?>
 <script>
     $(function() {
@@ -45,7 +44,12 @@
                 sorted_list[index] = temp;
             });
             $.post(BASE_URL + 'admin/abouts/update_sort', {'list': sorted_list}, function(data) {
-                $('#result').html(data);
+                $('#list').before(data);
+                $('a.close').click(function(e) {
+                    e.preventDefault();
+                    $(this).parents('.message').hide('fast');
+                    return false;
+                });
             });
         });
     });
@@ -67,7 +71,12 @@
                 sorted_list[index] = temp;
             });
             $.post(BASE_URL + 'admin/abouts/update_sort', {'list': sorted_list}, function(data) {
-                $('#result').html(data);
+                $('#list').before(data);
+                $('a.close').click(function(e) {
+                    e.preventDefault();
+                    $(this).parents('.message').hide('fast');
+                    return false;
+                });
             });
         });
     });
