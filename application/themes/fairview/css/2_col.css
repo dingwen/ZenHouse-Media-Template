@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#main #left-col, #main #left-col #nav{width:130px; float:left;}/*This is where the sub navigation is*/
+
+#main #right-col{float:left; width:820px;}
+
+#main #right-col #left-col-inner{margin:9px 0 0 9px;}
+
+/*-----------------HOME page-----------------*/
+
+#index #right-col #left-col-inner{float:left;width:215px;margin:0 0 0 9px;}/*width for the inner left column in the right column*/
+
+#index #right-col #right-col-inner {float:left; width:580px;}
+
+#index #right-col #right-col-inner #main-col-inner{width:580px; height:510px;}
+
+#index #right-col #right-col-inner #left-col-inner2,
+#index #right-col #right-col-inner #right-col-inner2
+{float:left;}
+
+
+/*-----------------ABOUT page-----------------*/
+
+#about #right-col #left-col-inner{float:left;width:580px;}
+#about #right-col #right-col-inner{float:left; width:215px;}
+#about #right-col #left-col-inner2{float:left;width:510px;}
+#about #right-col #right-col-inner2{float:left; width:285px;}
+
+
+/*----------------- NEWS page-----------------*/
+
+#news #right-col #left-col-inner,
+#gallery #right-col #left-col-inner
+{float:left;width:615px;}
+
+#news #right-col #right-col-inner, 
+#gallery #right-col #right-col-inner
+{float:left; width:177px; min-height:630px; min-height:auto!important; margin:9px 0 0 9px;}
+
+#news #right-col #left-col-inner #left-col-inner2{width:340px; float:left; padding:0 0 20px;}
+#news #right-col #left-col-inner #right-col-inner2{float:left; margin: 0 0 0 20px;}
+
+/*-----------------CONTACT page------------------*/
+
+#contact #left-col-inner{float:left; width:305px;}
+#contact #right-col #right-col-inner{float:left; width:487px; height:473px; margin:9px 0 0 9px;}
+

@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/*The about section in the gallery*/
+
+#gallery-about{background:#DBDDDD; margin:9px 0 0 0;}
+
+#gallery-about h2{padding:0 0 10px 0;}/*Give bottom spacing for the h2 in the about gallery section*/
+
+/*The Gallery Plug in*/
+
+#gallery #gallery-view-thumbs{width:350px; float:left;}
+
+#gallery #gallery-view-thumbs ul li{float:left; margin:9px 0 0 9px; position:relative;}
+
+#gallery #gallery-desc{width:265px; float:left; background:#DBDDDD; margin:9px 0 0 0;}
+
+#pagination-thumb{width:340px; margin:0 9px 0 9px;}
+
+#page-num{float:right; width:30px;}
+
+#gallery img.floatleft{float:left; margin:7px 0 0 0;}
+
+#gallery img.floatright{float:right; margin:7px 0 0 0;}
+
+
+

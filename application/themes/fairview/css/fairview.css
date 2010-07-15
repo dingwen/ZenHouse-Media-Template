@@ -1,0 +1,168 @@
+@charset "UTF-8";
+/* CSS Document */
+body{font-family:Arial, Helvetica, sans-serif;}
+
+#index{background:#F0DF28;} 
+#about{background:#B0C10E;}
+#gallery{background:#D34262;}
+#contact{background:#0067BC;}
+#news{background:#169BA5;}
+
+#wrapper{background:url(../images/bkg.jpg) repeat-y top left; height:100%;}
+
+/*-------------------border color for different pages------------------------------*/
+
+#index #main #right-col{border-left:#F0DF28 solid 27px;}
+#about #main #right-col{border-left:#B0C10E solid 27px;}
+#gallery #main #right-col{border-left:#D34262 solid 27px;}
+#contact #main #right-col{border-left:#0067BC solid 27px;}
+#news #main #right-col{border-left:#169BA5 solid 27px;}
+
+/*-------------------Main Section------------------------------*/
+	
+#main #right-col{background:#FFF;}
+#main img{display:block; margin:9px 0 0 0; border:none; float:left;} /*This class is used if the image does not need a border*/
+#index img{padding:9px 0 0 0;}
+#contact #right-col-inner2 img{margin:9px 0 0 9px;}
+
+	/*-------------------Main Navigation------------------------------*/
+	
+#nav .primary-nav{text-align:right;} /*styling for the nav*/
+
+#nav .primary-nav li{margin:7px 0 7px 0;}/*gives space above and below the navigation*/
+
+	.primary-nav .home a:link,
+	.primary-nav .about a:link,
+	.primary-nav .gallery a:link,
+	.primary-nav .contact a:link,
+	.primary-nav .news a:link,
+	.primary-nav a:visited,
+	.primary-nav a:hover
+	{color:#231F20; text-decoration:none; height:24px; line-height:24px;}/*Setting up the space for the secondary header image and color of the text*/
+	
+	#index .primary-nav .current, .primary-nav .home a:hover{background:#F0DF28; margin:0 0 0 70px;}
+	#about .primary-nav .current, .primary-nav .about a:hover{background:#B0C10E;margin:0 0 0 40px;}
+	#gallery .primary-nav .current, .primary-nav .gallery a:hover{background:#D34262; margin:0 0 0 35px;}
+	#contact .primary-nav .current, .primary-nav .contact a:hover{background:#0067BF; margin:0 0 0 50px;}
+	#news .primary-nav .current, .primary-nav .news a:hover{background:#169BA5; margin:0 0 0 75px;}
+	
+	.sub-category li a,
+	.sub-category li a:hover, 
+	.sub-category li a:link, 
+	.sub-category li a:visited 
+	{color:#231F20;text-decoration:none; font-size:14px; display:block; height:20px; line-height:20px; }/*This is where the background image for the secondary header*/
+
+	.sub-category li a:hover{text-decoration:underline;}
+
+/*-------------------Main Area (Applies to everything)------------------------------*/
+
+#main #right-col #right-col-inner{margin: 0 0 0 9px;}
+
+#main .inner{padding:20px;}
+
+#main #right-col #left-col-inner{background:#DBDDDD;}
+
+/*-------------------Index Page------------------------------*/
+#index .inner{padding:13px;}
+
+#index #flash{width:215px; height:1012px; background:#6F3;} /*main flash area on home page*/
+
+#index #right-col #right-col-inner #main-col-inner{background:#DBDDDD;}
+
+#index #right-col #right-col-inner #news-home{background:#DBDDDD; margin:9px 0 0 0; width:330px; height:235px; }
+
+#index #right-col #right-col-inner #event-home{background:#169BA5; height:145px; margin:9px 0 0 0;}
+
+#index #right-col #right-col-inner #featured-art{background:#DBDDDD; margin:9px 0 0 9px; width:240px; height:390px;}
+
+#index #right-col #right-col-inner #featured-art img, 
+#index #right-col #right-col-inner #news-home img
+{margin:0;}
+
+#index #right-col #ads{background:#D8DADA; width:580px; height:94px; margin:9px 9px 0 0 ; float:left;}
+
+#index .main-inner{padding: 20px;}
+
+#ads ul{margin:-10px 0 0 0; width: 580px;}
+
+#ads li{float:left; display:block; padding: 0 3px 0 3px;}
+
+/*-------------------About Page-------------------*/
+#about #main-col-inner{margin:0 0 0 9px;}
+
+#about #single img, 
+#about #right-col #left-col-inner2
+{margin: 9px 0 0 9px;}
+
+#about #right-col #right-col-inner2{margin: 0 0 0 9px;}
+#about #right-col #left-col-inner2{background:#DBDDDD;}
+
+/*-------------------News Page ------------------------------*/
+#news #main-col-inner{margin:0 0 0 9px;}
+
+#news #right-col #left-col-inner .news-social-media li{float:left; height:22px; line-height:36px; padding:0 3px 10px 3px; font-size:12px;}
+
+#news #right-col #right-col-inner, 
+#gallery #right-col #right-col-inner
+{background:#DBDDDD;}
+
+/*-------------------Gallery Page ------------------------------*/
+#gallery #main-col-inner{background:#DBDDDD; margin:9px 9px 0 9px;}
+#gallery #right-col #left-col-inner{background:none;}
+#gallery img {margin:0;}
+
+/*-------------------Contact Page------------------------------*/
+#contact #main-col-inner{margin:0 0 0 9px;}
+#contact #right-col-inner{background:#DBDDDD;}
+#contact #right-col #left-col-inner{background:none;}
+#contact #contact-box{width:305px; height:195px;background:#DBDDDD;}
+#contact #google-maps{width:305px; height:270px; background:#6F9; margin:9px 0 0 0;}
+form{margin:10px 0 0 0;}/*gives space for the form*/
+label{display: block;}/*allows label to be on the next line*/
+input, textarea{display: block; margin:0 0 8px;} /*gives the bottom a margin*/
+input{width:440px; padding:3px 0 3px 0;} /*width and padding for input*/
+textarea {height: 160px; width:445px;} /*height and width for text area*/
+input#submit {border: none; width: 107px; height: 36px; background: url(../images/submit.png) no-repeat 0 0; margin:15px 0 0 0; overflow: hidden; }
+.blue{color:#1698A2; font-style:bold;}
+
+/*-------------------Typography Elements------------------------------*/
+
+#main h2.main-title{font-size:28px; font-style:bold; color:#D95204;}/*This is the title associated with the artist on the home page*/
+
+#main p.welcome{font-size:18px; line-height:22px;}/*The welcome blurb used on the home page*/
+
+#main p.tagline{font-size:28px;padding:10px 0 0 0;}
+
+#main #right-col a, #main #single a{color:#D95204; font-size:12px; text-decoration:none;}
+
+#footer a {color:#D95204; font-size:11px; text-decoration:none;}
+
+.date, .copyright{font-size:11px; color:#58595B;}/*same used in the date and copyright section in footer*/
+
+h2{font-size:24px;}
+
+h3{font-size:18px; font-style:bold;}
+
+h3.title, h3.subtitle{font-size: 28px; padding:12px 0 0 0;}
+
+h3.subtitle{color:#fff;}
+
+.exb-subtitle{font-size:18px; color:#2DAAA4; padding:0;}
+
+h3, h4, p, .exb-subtitle {color:#3F3F3F}
+
+label{color:#707070;}
+
+label.rss{line-height:40px; height:22px;}
+
+h4 {font-size:14px;}
+
+p, label{font-size:11px; line-height:19px;}
+
+h4.sub-text{font-size:11px; padding:0; color:#58595B;}
+
+.when,.where{color: #989898;}
+
+
+
+

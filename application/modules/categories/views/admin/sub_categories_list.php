@@ -17,12 +17,6 @@
         </tr>
         <?php endforeach; ?>
     </tbody>
-    <tfoot>
-        <tr>
-            <th>Name</th>
-            <th>Action</th>
-        </tr>
-    </tfoot>
 </table>
 <?php else: ?>
 <p>Please select a page from the Page List dropdown menu.</p>

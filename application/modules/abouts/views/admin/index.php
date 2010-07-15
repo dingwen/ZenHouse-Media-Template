@@ -12,16 +12,6 @@
         </thead>
         <tbody>
         </tbody>
-        <tfoot>
-            <tr>
-                <th>Title</th>
-                <?php if($category_enable): ?>
-                <th>Category</th>
-                <?php endif; ?>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </tfoot>
     </table>
 </div>
 <script type="text/javascript">

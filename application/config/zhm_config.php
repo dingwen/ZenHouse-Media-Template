@@ -4,7 +4,8 @@
 | General Settings
 |--------------------------------------------------------------------------
 */
-$config['categories_enable'] = TRUE;
+$config['categories_enable'] = FALSE;
+$config['general_title'] = "Fairview Conveyor Services";
 
 /*
 |--------------------------------------------------------------------------

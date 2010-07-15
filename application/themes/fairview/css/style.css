@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/* CSS Document */
+
+html { overflow-y: scroll; /* force scroll bar so page won't jump */ }
+
+body, h1, h2, h3, h4, p{margin:0; padding:0; font-weight:lighter;}
+
+ul, li{border:0; margin:0; padding:0; list-style:none;}
+
+.clear-both{clear:both;}
+
+#header{padding:0; margin:0;}
+#nav .primary-nav .nav1 a:link, 
+#nav .primary-nav .nav2 a:link,
+#nav .primary-nav .nav3 a:link,
+#nav .primary-nav .nav4 a:link,
+#nav .primary-nav .nav5 a:link,
+#nav .primary-nav a:visited,
+#nav .primary-nav a:hover
+{display:block;}
+
+#subnav .secondary-nav .nav1 a:link,
+#subnav .secondary-nav .nav2 a:link,
+#subnav .secondary-nav .nav3 a:link,
+#subnav .secondary-nav .nav4 a:link,
+#subnav .secondary-nav .nav5 a:link,
+#subnav .secondary-nav a:visited, 
+#subnav .secondary-nav a:hover
+{display:block;}
+	
+#main, #main-inner{margin:0; min-height:400px; height:auto !important;}  
+
+#main{width:980px; margin:0 auto;}
+
+#main #single{width:100%;}/*specifies width for single column*/
+
+#main #single #left-col-inner{float:left; clear:left; padding:0 20px 0 0;}/*tells the left column to go left so that the other column can wrap around*/
+
+#content{padding:30px 0 0 0;}
+
+#content h3.hbg1, 
+#content h3.hbg2, 
+#content h3.hbg3
+{display:block;}
+
+#footer{float:left; width:820px; padding:15px 0 15px 180px;}
+
+#social-media ul.media-links li{float:left; padding:0 5px 0 5px;}
+

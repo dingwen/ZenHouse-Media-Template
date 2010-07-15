@@ -267,9 +267,11 @@ class Template
         	case 'meta':
         		$meta = '<meta name="'.$name.'" content="'.$content.'" />';
         	break;
-
         	case 'link':
         		$meta = '<link rel="'.$name.'" href="'.$content.'" />';
+        	break;
+            case 'css':
+        		$meta = '<link rel="stylesheet" href="'.$content.'" type="text/css" />';
         	break;
         }
 
