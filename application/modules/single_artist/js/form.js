@@ -26,19 +26,5 @@
                 }
             }
         );
-
-        $('.jwysiwyg').wysiwyg({
-            controls: {
-                justifyFull : {visible : false},
-                undo : {visible : false},
-                redo : {visible : false},
-                h1 : {visible : false},
-                h2 : {visible : false},
-                h3 : {visible : false},
-                insertHorizontalRule : {visible : false},
-                insertImage : {visible : false},
-                insertTable : {visible : false}
-            }
-        });
     });
 })(jQuery);

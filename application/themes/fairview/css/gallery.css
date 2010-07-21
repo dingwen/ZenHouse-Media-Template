@@ -1,5 +1,31 @@
 @charset "UTF-8";
 /* CSS Document */
+#gallery-view-main {
+    width: 615px;
+    height: 413px;
+    position: relative;
+}
+
+#gallery-view-main span.image-wrapper {
+    top: 0;
+    left: 0;
+    position: absolute;
+    display: block;
+}
+
+#gallery-view-main a.advance-link {
+    width: 615px;
+    height: 413px;
+    display: block;
+    text-align: center;
+}
+
+#gallery-view-main img {
+    float: none;
+    border: none;
+    display: inline-block;
+    vertical-align: top;
+}
 
 /*The about section in the gallery*/
 
@@ -9,19 +35,29 @@
 
 /*The Gallery Plug in*/
 
-#gallery #gallery-view-thumbs{width:350px; float:left;}
+#gallery-view-thumbs{width:360px; height:185px; float:left;}
 
-#gallery #gallery-view-thumbs ul li{float:left; margin:9px 0 0 9px; position:relative;}
+#gallery-view-thumbs ul li{float:left; margin:9px 0 0 9px; position:relative;}
 
-#gallery #gallery-desc{width:265px; float:left; background:#DBDDDD; margin:9px 0 0 0;}
+#gallery-desc{width:255px; height:195px; float:left; background:#DBDDDD; margin:9px 0 0 0;}
+
+#gallery-about{height: 135px;}
 
 #pagination-thumb{width:340px; margin:0 9px 0 9px;}
 
-#page-num{float:right; width:30px;}
+#slide-control { width: 615px; padding:7px 0 0 0; }
+#slide-control div.pagination-img { width: 565px; }
 
-#gallery img.floatleft{float:left; margin:7px 0 0 0;}
+#thumb-control { width: 350px; float: right; }
+#thumb-control div.pagination-img { width: 300px; }
 
-#gallery img.floatright{float:right; margin:7px 0 0 0;}
+#slide-control div, #thumb-control div { float: left; }
 
+div.photo-index { width: 40px; text-align: center; }
+
+div.nav-controls { width: 100%; position: relative; }
+div.nav-controls a { display: block; width: 18px; height: 18px; line-height: 18px;}
+div.nav-controls a.prev { position: absolute; left: 0; background: white url(../images/paginate_back.png) no-repeat center center; }
+div.nav-controls a.next { position: absolute; right: 0; background: white url(../images/paginate_forward.png) no-repeat center center; }
 
 

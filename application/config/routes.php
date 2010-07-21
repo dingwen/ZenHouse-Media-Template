@@ -40,11 +40,16 @@
 |
 */
 
-$route['default_controller'] = "temp/welcome";
+$route['default_controller'] = "home";
 $route['scaffolding_trigger'] = "";
 
+$route['news/rss'] = "news/rss";
+$route['news/(:any)'] = "news/index/$1";
+$route['about/(:any)'] = "about/index/$1";
+$route['gallery/(:any)'] = "gallery/index/$1";
+
 $route['admin/([a-zA-Z_-]+)/(:any)'] = "$1/admin/$2";
-// $route['admin/(login|logout)'] = "admin/$1";
+$route['admin/(login|logout)'] = "users/$1";
 $route['admin/([a-zA-Z_-]+)'] = "$1/admin/index";
 
 

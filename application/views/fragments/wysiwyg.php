@@ -21,7 +21,7 @@
         });
         function filebrowser(field_name, url, type, win) {
 
-            fileBrowserURL = <?php echo BASE_URI; ?> + "/pdw_file_browser/index.php?filter=" + type;
+            fileBrowserURL = "<?php echo BASE_URI; ?>pdw_file_browser/index.php?filter=" + type;
 
             tinyMCE.activeEditor.windowManager.open({
                 title: "File Browser - by PDW",

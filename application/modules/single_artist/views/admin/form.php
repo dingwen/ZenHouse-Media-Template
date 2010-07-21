@@ -23,16 +23,7 @@
             </div>
             <div>
                 <label>Artist Biography</label>
-                <?php
-                    $bio_textarea = array(
-                        'name' => 'bio',
-                        'value' => set_value('bio', $profile->bio),
-                        'class' => 'jwysiwyg',
-                        'rows' => "10",
-                        'cols' => "50"
-                    );
-                    echo form_textarea($bio_textarea);
-                ?>
+                <textarea name="bio" class="tinymce"><?php echo set_value('bio', $profile->bio); ?></textarea>
             </div>
         </fieldset>
         <fieldset>
@@ -95,16 +86,7 @@
             </div>
             <div>
                 <label>Content</label>
-                <?php
-                    $addtional_content_textarea = array(
-                        'name' => 'addtional_content',
-                        'value' => set_value('addtional_content', $profile->addtional_content),
-                        'class' => 'jwysiwyg',
-                        'rows' => "10",
-                        'cols' => "50"
-                    );
-                    echo form_textarea($addtional_content_textarea);
-                ?>
+                <textarea name="addtional_content" class="tinymce"><?php echo set_value('addtional_content', $profile->addtional_content); ?></textarea>
             </div>
         </fieldset>
         <fieldset>

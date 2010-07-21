@@ -42,8 +42,8 @@ class MY_Model extends Model {
         }
         return FALSE;
     }
-	
-	public function get_by_slug($slug = "") {
+
+    public function get_by_slug($slug = "") {
         if(!empty($slug)) {
             $this->db->from($this->table)->where('slug', $slug);
             $query = $this->db->get();

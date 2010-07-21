@@ -273,6 +273,9 @@ class Template
             case 'css':
         		$meta = '<link rel="stylesheet" href="'.$content.'" type="text/css" />';
         	break;
+            case 'js':
+                $meta = '<script src="'.$content.'" type="text/javascript"></script>';
+            break;
         }
 
     	$this->append_metadata($meta);

@@ -3,34 +3,28 @@
 
 html { overflow-y: scroll; /* force scroll bar so page won't jump */ }
 
-body, h1, h2, h3, h4, p{margin:0; padding:0; font-weight:lighter;}
+body, h1, h2, h3, h4, p{margin:0; padding:0;}
+h1, h2, h3, h4 { font-weight:lighter;}
 
 ul, li{border:0; margin:0; padding:0; list-style:none;}
 
 .clear-both{clear:both;}
 
 #header{padding:0; margin:0;}
-#nav .primary-nav .nav1 a:link, 
-#nav .primary-nav .nav2 a:link,
-#nav .primary-nav .nav3 a:link,
-#nav .primary-nav .nav4 a:link,
-#nav .primary-nav .nav5 a:link,
+
+#nav .primary-nav a,
 #nav .primary-nav a:visited,
 #nav .primary-nav a:hover
-{display:block;}
+{display:block; padding: 0 10px 0 0;}
 
-#subnav .secondary-nav .nav1 a:link,
-#subnav .secondary-nav .nav2 a:link,
-#subnav .secondary-nav .nav3 a:link,
-#subnav .secondary-nav .nav4 a:link,
-#subnav .secondary-nav .nav5 a:link,
+#subnav .secondary-nav a,
 #subnav .secondary-nav a:visited, 
 #subnav .secondary-nav a:hover
 {display:block;}
 	
 #main, #main-inner{margin:0; min-height:400px; height:auto !important;}  
 
-#main{width:980px; margin:0 auto;}
+#main{width:1040px;}
 
 #main #single{width:100%;}/*specifies width for single column*/
 

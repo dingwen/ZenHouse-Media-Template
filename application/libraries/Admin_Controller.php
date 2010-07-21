@@ -6,6 +6,14 @@ class Admin_Controller extends MY_Controller {
 
     public function  __construct() {
         parent::__construct();
+
+        $logged_in = $this->session->userdata('logged_in');
+
+        if(!$logged_in) {
+            redirect('users/login');
+            exit;
+        }
+
         $this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -18,9 +26,11 @@ class Admin_Controller extends MY_Controller {
         $this->template->enable_parser(FALSE);
 
         // Build general meta data, javascript, css and other information
-        $this->template->title('ZenHouse Media Artist Site Control Panel');
+        $this->template->title('ZenHouse Media CMS Control Panel');
 
-        $this->template->append_metadata(css('admin/admin.css'))->append_metadata(js('admin/admin.js'));
+        $this->template->append_metadata(css('admin/admin.css'))
+                ->append_metadata(css('admin/form.css'))
+                ->append_metadata(js('admin/admin.js'));
 
         // set general page partial elements.
         $this->template->set_partial('google_cdn', 'fragments/jquery_cdn', FALSE);

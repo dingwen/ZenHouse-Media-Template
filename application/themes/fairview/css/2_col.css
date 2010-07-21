@@ -1,45 +1,60 @@
 @charset "UTF-8";
 /* CSS Document */
 
-#main #left-col, #main #left-col #nav{width:130px; float:left;}/*This is where the sub navigation is*/
+#main #left-col, #main #left-col #nav{width:188px; float:left; margin:78px 0 0 0;}/*This is where the sub navigation is*/
 
-#main #right-col{float:left; width:820px;}
+#main #right-col{float:left; width:823px; height:100%;}
 
 #main #right-col #left-col-inner{margin:9px 0 0 9px;}
 
 /*-----------------HOME page-----------------*/
 
-#index #right-col #left-col-inner{float:left;width:215px;margin:0 0 0 9px;}/*width for the inner left column in the right column*/
+#index #main #left-col{position:relative; width:188px;}/*navigation in left column*/
 
-#index #right-col #right-col-inner {float:left; width:580px;}
+#index #main #left-col #nav{z-index:50; position:absolute;width:188px;}/*positioning for the z-index for the flash*/
 
-#index #right-col #right-col-inner #main-col-inner{width:580px; height:510px;}
+#index #right-col #left-col-inner{float:left; position:relative; width:215px;margin:0 0 0 9px;}/*width for the inner left column in the right column*/
+
+#index #right-col #right-col-inner {float:right; width:580px; margin:0 9px 0 0;}
+
+#index #right-col #right-col-inner #main-col-inner{width:580px; height:575px;}
 
 #index #right-col #right-col-inner #left-col-inner2,
 #index #right-col #right-col-inner #right-col-inner2
 {float:left;}
 
-
 /*-----------------ABOUT page-----------------*/
 
-#about #right-col #left-col-inner{float:left;width:580px;}
+#about #right-col #left-col-inner1,
+#about #right-col #left-col-inner3, 
+#about #right-col #left-col-inner4
+{float:left;width:577px; background:#DBDDDD; margin:9px 0 0 9px;}
+
+#about #right-col #left-col-inner1{height:292px;}
+#about #right-col #left-col-inner3{min-height:780px; min-height:auto!important;}
+#about #right-col #left-col-inner4{min-height:598px; min-height:auto!important;}
+
 #about #right-col #right-col-inner{float:left; width:215px;}
-#about #right-col #left-col-inner2{float:left;width:510px;}
+#about #right-col #left-col-inner2{float:left;width:510px; min-height:534px; min-height:auto!important;}
 #about #right-col #right-col-inner2{float:left; width:285px;}
 
-
 /*----------------- NEWS page-----------------*/
-
 #news #right-col #left-col-inner,
 #gallery #right-col #left-col-inner
 {float:left;width:615px;}
 
-#news #right-col #right-col-inner, 
-#gallery #right-col #right-col-inner
-{float:left; width:177px; min-height:630px; min-height:auto!important; margin:9px 0 0 9px;}
+#news #right-col #left-col-inner{height:630px;}
 
-#news #right-col #left-col-inner #left-col-inner2{width:340px; float:left; padding:0 0 20px;}
+#news #right-col #right-col-inner{float:left; width:177px; height:630px; margin:9px 0 0 9px;}
+
 #news #right-col #left-col-inner #right-col-inner2{float:left; margin: 0 0 0 20px;}
+
+/*-------------------GALLERY Page ------------------------------*/
+#gallery #main-col-inner{background:#DBDDDD; margin:9px 9px 0 9px;}
+#gallery #right-col #left-col-inner{background:none;}
+#gallery #right-col #right-col-inner{float:left; width:177px; height:788px; margin:9px 0 0 9px;}
+#gallery img {margin:0;}
+#gallery .title{color:#D65204; font-size:26px; margin:0 5px 0 0;}
 
 /*-----------------CONTACT page------------------*/
 

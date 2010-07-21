@@ -165,9 +165,9 @@ class Admin extends Admin_Controller {
         }
         $this->data->profile =& $profile;
         $this->template->append_metadata(js('admin/jquery.ajaxupload.js'))
-                ->append_metadata(css('jquery.wysiwyg.css'))
-                ->append_metadata(js('jquery.wysiwyg.js'))
-                ->append_metadata(js('form.js', 'single_artist'));
+                ->append_metadata(js('tiny_mce/jquery.tinymce.js'))
+                ->append_metadata(js('tiny_mce/tiny_mce.js'))
+                ->append_metadata($this->load->view('fragments/mini_wysiwyg', array(), TRUE));
         $this->template->build('admin/form', $this->data);
     }
 

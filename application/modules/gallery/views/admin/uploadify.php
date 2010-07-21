@@ -1,0 +1,1 @@
+<p><?php echo $image_process_result; ?></p>

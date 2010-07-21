@@ -6,6 +6,8 @@ class Public_Controller extends MY_Controller {
     protected $theme_view_path;
     protected $theme_image_path;
     protected $theme_css_path;
+    protected $web_profile_data;
+    protected $web_settings_data;
 
     public function  __construct() {
         parent::__construct();
@@ -21,14 +23,21 @@ class Public_Controller extends MY_Controller {
         $this->theme_view_path = "../themes/fairview/views/";
         $this->theme_image_path = APPPATH_URI . 'themes/fairview/images/';
         $this->theme_css_path = APPPATH_URI . 'themes/fairview/css/';
+        $this->theme_flash_path = APPPATH_URI . 'themes/fairview/flash/';
+        $this->theme_js_path = APPPATH_URI . 'themes/fairview/js/';
 
         $this->data->theme_image_path = $this->theme_image_path;
+        $this->data->theme_flash_path = $this->theme_flash_path;
+        $this->data->web_profile = $this->cache->get('web_profile');
+        $this->data->web_settings = $this->cache->get('web_settings');
         
 
         // Build general meta data, javascript, css and other information
-        $this->template->title($this->config->item('general_title'));
-
-        $this->template->set_metadata("", $this->theme_css_path.'style.css', 'css')
+        
+        $this->template->title($this->data->web_profile['meta_title']);
+        
+        $this->template->set_metadata('description', $this->data->web_profile['meta_description'], 'meta')
+                ->set_metadata("", $this->theme_css_path.'style.css', 'css')
                 ->set_metadata("", $this->theme_css_path.'fairview.css', 'css')
                 ->set_metadata("", $this->theme_css_path.'2_col.css', 'css');
 

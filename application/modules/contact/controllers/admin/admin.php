@@ -49,7 +49,7 @@ class Admin extends Admin_Controller {
                 ),
                 array(
                     'field'   => 'phones[]', 'label'   => 'Contact Form Subject',
-                    'rules'   => 'trim|max_length[11]'
+                    'rules'   => 'trim|max_length[100]'
                 )
             ),
             'edit_social_media' => array(

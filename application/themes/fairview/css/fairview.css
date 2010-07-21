@@ -24,35 +24,153 @@ body{font-family:Arial, Helvetica, sans-serif;}
 #main img{display:block; margin:9px 0 0 0; border:none; float:left;} /*This class is used if the image does not need a border*/
 #index img{padding:9px 0 0 0;}
 #contact #right-col-inner2 img{margin:9px 0 0 9px;}
+#main #right-col p img{float:right; margin:0 0 5px 15px;}
+#main #right-col a, #main #single a{color:#D95204; font-size:12px; text-decoration:none;}
+
+#contact #main #right-col a, #main #single a{font-size:14px;}
+
+/*------------------Logo-----------------*/
+#logo{
+	position:absolute;
+	top: 50px;
+	left:38px;
+	background:url(../images/fairview_logo.jpg) no-repeat top left;
+	width:148px;
+	height:89px;
+	z-index:10;
+}
+
+#index #logo{
+	top: -28px;
+
+}
+
+h1{text-indent:-9999px;}
+
 
 	/*-------------------Main Navigation------------------------------*/
 	
-#nav .primary-nav{text-align:right;} /*styling for the nav*/
+#nav #primary-nav{
+	list-style: none;
+ 	padding: 0;
+  	margin: 0;
+	width:188px;
+	height:170px;
+	position: relative;
+} /*styling for the UL nav*/
 
-#nav .primary-nav li{margin:7px 0 7px 0;}/*gives space above and below the navigation*/
 
-	.primary-nav .home a:link,
-	.primary-nav .about a:link,
-	.primary-nav .gallery a:link,
-	.primary-nav .contact a:link,
-	.primary-nav .news a:link,
-	.primary-nav a:visited,
-	.primary-nav a:hover
-	{color:#231F20; text-decoration:none; height:24px; line-height:24px;}/*Setting up the space for the secondary header image and color of the text*/
+#nav #primary-nav a {
+  display:block;
+  text-indent: -9999px;
+  position: absolute;
+  outline: none;
+}
+
+#nav #primary-nav a:hover {
+  background-position: left bottom;
+}
+
+#primary-nav .home,
+#primary-nav .about,
+#primary-nav .gallery,
+#primary-nav .contact,
+#primary-nav .news{right:-1px; text-decoration:none; height:33px;}/*Setting up the space for the secondary header image and color of the text*/
 	
-	#index .primary-nav .current, .primary-nav .home a:hover{background:#F0DF28; margin:0 0 0 70px;}
-	#about .primary-nav .current, .primary-nav .about a:hover{background:#B0C10E;margin:0 0 0 40px;}
-	#gallery .primary-nav .current, .primary-nav .gallery a:hover{background:#D34262; margin:0 0 0 35px;}
-	#contact .primary-nav .current, .primary-nav .contact a:hover{background:#0067BF; margin:0 0 0 50px;}
-	#news .primary-nav .current, .primary-nav .news a:hover{background:#169BA5; margin:0 0 0 75px;}
+/* ---- Background images for nav ----*/
+#primary-nav .home{width: 65px; top: 0; background:url(../images/home_sprite.png) no-repeat 0 0;}
+#primary-nav .about{width: 97px; top: 33px; background:url(../images/about_sprite.png) no-repeat 0 0;}
+#primary-nav .gallery{width: 102px; top: 66px; background:url(../images/products_sprite.png) no-repeat 0 0;}
+#primary-nav .contact{width: 90px; top: 99px; background:url(../images/contact_sprite.png) no-repeat 0 0;}
+#primary-nav .news{width: 69px; top: 132px; background:url(../images/news_sprite.png) no-repeat 0 0;}
 	
-	.sub-category li a,
-	.sub-category li a:hover, 
-	.sub-category li a:link, 
-	.sub-category li a:visited 
-	{color:#231F20;text-decoration:none; font-size:14px; display:block; height:20px; line-height:20px; }/*This is where the background image for the secondary header*/
+/*------ CURRENT PAGE -------*/
+#primary-nav .current{display:block; height:33px; right:-1px;}
+#index #primary-nav .current{width: 65px; top:0; background:url(../images/home_current.jpg) no-repeat top left;}
+#about #primary-nav .current{width: 97px; top: 33px; background:url(../images/about_current.jpg) no-repeat 0 0;}
+#gallery #primary-nav .current{width: 102px; top: 66px; background:url(../images/products_current.jpg) no-repeat 0 0;}
+#contact #primary-nav .current{width: 90px; top: 99px; background:url(../images/contact_current.jpg) no-repeat 0 0;}
+#news #primary-nav .current{width: 69px; top: 132px; background:url(../images/news_current.jpg) no-repeat 0 0;}
+	
+/*------ABOUT PAGE NAV-----*/
+#about #primary-nav .gallery{top: 200px; }
+#about #primary-nav .contact{top: 233px;}
+#about #primary-nav .news{top: 266px;}
+	
+#about #primary-nav .sub-category{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 133px;
+  height: 99px;
+  position: absolute;
+  top:66px;
+  right:-1px;
+	}
 
-	.sub-category li a:hover{text-decoration:underline;}
+#about #primary-nav .sub-category a{
+  display: block;
+  outline: none;
+  color:#231F20;
+  position:absolute;
+  }
+ #about #primary-nav .sub-category a#The-Company,
+ #about #primary-nav .sub-category a#Our-Products,
+ #about #primary-nav .sub-category a#Our-Services,
+ #about #primary-nav .sub-category a#Safety-Standards{right:1px; text-decoration:none; height:24px;}
+  
+#about #primary-nav .sub-category a#The-Company{
+  width: 105px;
+  background: url(../images/about_company_sprite.jpg) no-repeat 0 0;
+  top: 6px;
+}
+#about #primary-nav .sub-category a#Our-Products{
+  width: 105px;
+  background: url(../images/about_products_sprite.jpg) no-repeat 0 0;
+  top: 36px;
+}
+#about #primary-nav .sub-category a#Our-Services{
+  width: 98px;
+  background: url(../images/about_services_sprite.jpg) no-repeat 0 0;
+  top: 66px;
+}
+#about #primary-nav .sub-category a#Safety-Standards{
+  width: 128px;
+  background: url(../images/about_safety_sprite.jpg) no-repeat 0 0;
+  top: 96px;
+}
+		
+#about #primary-nav .sub-category a:hover#The-Company,
+#about #primary-nav .sub-category a:hover#Our-Products,
+#about #primary-nav .sub-category a:hover#Our-Services,
+#about #primary-nav .sub-category a:hover#Safety-Standards{background-position: 0 -24px;}/*This is where the background image for the secondary header*/
+
+.currentpg{background-position: 0 -24px; display:inline; }
+
+
+
+
+
+
+	/*-------------------GALLERY Sub Navigation------------------------------*/
+	
+	#main #right-col #subnav .secondary-nav .sub-category .li a, 
+	#main #right-col #subnav .secondary-nav .sub-category .current 
+	{color:#231F20; text-decoration:none; font-size:14px; padding:2px 0 2px 10px; display:block; line-height:16px;}
+	 
+	#main #right-col #subnav .secondary-nav .li a,
+	#main #right-col #subnav .secondary-nav .li a:visited
+	{color:#231F20;  margin:7px 0 2px; width:167px;}
+	
+	#gallery #main #right-col #subnav .secondary-nav .li a:hover, 
+	#gallery #main #right-col #subnav .secondary-nav .current 
+	{background-color:#D34262; color:#FFF; width:167px;}
+	
+	#news #main #right-col #subnav .secondary-nav .li a:hover, 
+	#news #main #right-col #subnav .secondary-nav .current 
+	{background-color:#169BA5; color:#FFF; width:167px;}
+	
+
 
 /*-------------------Main Area (Applies to everything)------------------------------*/
 
@@ -65,27 +183,36 @@ body{font-family:Arial, Helvetica, sans-serif;}
 /*-------------------Index Page------------------------------*/
 #index .inner{padding:13px;}
 
-#index #flash{width:215px; height:1012px; background:#6F3;} /*main flash area on home page*/
+#index #flash{position:absolute; left:-251px; z-index:0; width:215px; height:1076px;} /*main flash area on home page*/
 
 #index #right-col #right-col-inner #main-col-inner{background:#DBDDDD;}
 
 #index #right-col #right-col-inner #news-home{background:#DBDDDD; margin:9px 0 0 0; width:330px; height:235px; }
 
-#index #right-col #right-col-inner #event-home{background:#169BA5; height:145px; margin:9px 0 0 0;}
+#index #right-col #right-col-inner #event-home{background:#169BA5; height:145px; margin:9px 0 0 0; width:330px;}
+
+#index #right-col #right-col-inner #event-home .inner{
+	padding:44px 0 0 18px;
+}
 
 #index #right-col #right-col-inner #featured-art{background:#DBDDDD; margin:9px 0 0 9px; width:240px; height:390px;}
 
 #index #right-col #right-col-inner #featured-art img, 
 #index #right-col #right-col-inner #news-home img
-{margin:0;}
+{margin:0 0 10px 0;}
 
-#index #right-col #ads{background:#D8DADA; width:580px; height:94px; margin:9px 9px 0 0 ; float:left;}
+#index #right-col #ads{background:#D8DADA; width:580px; height:86px; margin:9px 9px 0 0 ; float:left;}
 
-#index .main-inner{padding: 20px;}
+#index #right-col #ads img{margin:0; padding:5px 0 0 0;}
 
-#ads ul{margin:-10px 0 0 0; width: 580px;}
+
+#index .main-inner{padding: 20px; margin:8px 0 0 0;}
+
+#ads ul{width: 580px;}
 
 #ads li{float:left; display:block; padding: 0 3px 0 3px;}
+
+#index #main-img{text-align:center; margin: -20px 0 0 0; background-color:#3F3F3F; height:300px;}
 
 /*-------------------About Page-------------------*/
 #about #main-col-inner{margin:0 0 0 9px;}
@@ -95,7 +222,7 @@ body{font-family:Arial, Helvetica, sans-serif;}
 {margin: 9px 0 0 9px;}
 
 #about #right-col #right-col-inner2{margin: 0 0 0 9px;}
-#about #right-col #left-col-inner2{background:#DBDDDD;}
+#about #right-col #left-col-inner2{background:#DBDDDD; height:534px;}
 
 /*-------------------News Page ------------------------------*/
 #news #main-col-inner{margin:0 0 0 9px;}
@@ -105,11 +232,6 @@ body{font-family:Arial, Helvetica, sans-serif;}
 #news #right-col #right-col-inner, 
 #gallery #right-col #right-col-inner
 {background:#DBDDDD;}
-
-/*-------------------Gallery Page ------------------------------*/
-#gallery #main-col-inner{background:#DBDDDD; margin:9px 9px 0 9px;}
-#gallery #right-col #left-col-inner{background:none;}
-#gallery img {margin:0;}
 
 /*-------------------Contact Page------------------------------*/
 #contact #main-col-inner{margin:0 0 0 9px;}
@@ -123,45 +245,68 @@ input, textarea{display: block; margin:0 0 8px;} /*gives the bottom a margin*/
 input{width:440px; padding:3px 0 3px 0;} /*width and padding for input*/
 textarea {height: 160px; width:445px;} /*height and width for text area*/
 input#submit {border: none; width: 107px; height: 36px; background: url(../images/submit.png) no-repeat 0 0; margin:15px 0 0 0; overflow: hidden; }
-.blue{color:#1698A2; font-style:bold;}
 
 /*-------------------Typography Elements------------------------------*/
 
-#main h2.main-title{font-size:28px; font-style:bold; color:#D95204;}/*This is the title associated with the artist on the home page*/
+#main h2.main-title{font-size:28px; font-style:bold; color:#D95204; text-indent:-9999px; background:url(../images/welcome_title.png) no-repeat 0 0; margin:-5px 0 10px 0;}/*This is the title associated with the artist on the home page*/
 
-#main p.welcome{font-size:18px; line-height:22px;}/*The welcome blurb used on the home page*/
+#main p.welcome{font-size:14px; line-height:21px; margin:5px 0;}/*The welcome blurb used on the home page*/
 
-#main p.tagline{font-size:28px;padding:10px 0 0 0;}
+#main br{
+	margin: 0 0 10px 0;	
+}
 
-#main #right-col a, #main #single a{color:#D95204; font-size:12px; text-decoration:none;}
+#main p.tagline{font-size:24px;padding:10px 0 0 0; text-indent:-9999px;}
 
-#footer a {color:#D95204; font-size:11px; text-decoration:none;}
+#main #right-col #footer a {color:#D95204; font-size:9px; text-decoration:none;}
 
-.date, .copyright{font-size:11px; color:#58595B;}/*same used in the date and copyright section in footer*/
+.date, .copyright{font-size:9px; color:#58595B; font-weight:lighter; text-transform:uppercase;}/*same used in the date and copyright section in footer*/
 
-h2{font-size:24px;}
+h1,h2{font-size:24px;}
 
-h3{font-size:18px; font-style:bold;}
+#about #right-col h2{padding:0 0 8px 0;}
 
-h3.title, h3.subtitle{font-size: 28px; padding:12px 0 0 0;}
+#about #right-col h3{padding:8px 0 10px 0;}
 
-h3.subtitle{color:#fff;}
+#gallery h2, 
+#gallery #right-col-inner h3, 
+#news h2, 
+#news #right-col-inner h3,
+#contact h2,
+#about #right-col h2 
+{color:#D95204;}
+
+#gallery #right-col-inner h3, 
+#news #right-col-inner h3
+{padding:10px; font-size:20px;}
+
+h3{font-size:18px; font-weight:bold;}
+
+h3.title, h3.subtitle{font-size: 26px; padding:0;}
+
+#main #right-col h3.subtitle a{color:#fff; font-size: 28px;}
 
 .exb-subtitle{font-size:18px; color:#2DAAA4; padding:0;}
 
 h3, h4, p, .exb-subtitle {color:#3F3F3F}
 
-label{color:#707070;}
+label{color:#707070; font-size:10px;}
+
+#contact-box label{font-size:14px; font-weight:lighter;  margin:5px 0}
+#contact-box h3{font-size:16px;}
 
 label.rss{line-height:40px; height:22px;}
 
-h4 {font-size:14px;}
+h4 {font-size:16px; font-weight:bold;}
 
-p, label{font-size:11px; line-height:19px;}
+p{font-size:14px; line-height:21px;}
 
 h4.sub-text{font-size:11px; padding:0; color:#58595B;}
 
 .when,.where{color: #989898;}
+.blue{color:#1698A2; font-style:bold; font-size:14px;}
+.black{color:#231F20; font-size:14px; font-weight:lighter;}
+.error{color:#900; font-size:12px;}
 
 
 

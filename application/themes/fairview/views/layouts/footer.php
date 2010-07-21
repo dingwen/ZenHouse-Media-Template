@@ -7,5 +7,5 @@
             <li class="media4"></li>
         </ul>
     </div><!--social-media-->
-    <label class="copyright">2010 Fairview Conveyor Services INC | ALL RIGHTS RESERVED |  Site by <a href="http://www.zenhousemedia.com" target="_blank">ZenHouse Media</a></label>
+    <label class="copyright">&#169; 2010 Fairview Conveyor Services Inc. All Rights Reserved. |  Site by <a href="http://www.zenhousemedia.com" target="_blank">ZenHouse Media</a></label>
 </div><!--footer-inner-->
