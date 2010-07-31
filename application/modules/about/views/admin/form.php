@@ -6,6 +6,10 @@
                 <label>Title</label>
                 <?php echo form_input('title', set_value('title', $abouts->title)); ?>
             </div>
+            <div>
+                <label>Link Name</label>
+                <?php echo form_input('link_name', set_value('link_name', $abouts->link_name)); ?>
+            </div>
             <?php if($category_enable): ?>
             <div>
                 <label>Category</label>
@@ -47,3 +51,24 @@
         </div>
     </form>
 </div>
+<script>
+    $(function () {
+        var title_input = $("input[name='title']");
+        var link_name = $("input[name='link_name']");
+        var link_name_val = "";
+
+        title_input.focusout(function() {
+            link_name_val = $.trim(link_name.val());
+            if(link_name_val < 1) {
+                link_name.attr('value', title_input.val());
+            }
+        });
+
+        link_name.focusin(function() {
+            link_name_val = $.trim(link_name.val());
+            if(link_name_val < 1) {
+                link_name.attr('value', title_input.val());
+            }
+        });
+    });
+</script>

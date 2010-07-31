@@ -16,7 +16,7 @@ class Abouts_m extends MY_Model {
     }
 
     public function get_about_list() {
-        $this->db->select('title, slug')->from($this->table)->where('status', 'live')->order_by('weight');
+        $this->db->select('title, link_name, slug')->from($this->table)->where('status', 'live')->order_by('weight');
         $query = $this->db->get();
         if($query->num_rows() > 0) {
             return $query->result_array();

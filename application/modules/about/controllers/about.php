@@ -13,9 +13,6 @@ class About extends Public_Controller {
         } else {
             $this->data->content = $this->abouts_m->get_by_slug($slug);
         }
-
-        $layout_num = $this->data->content['weight'] / 5;
-
-        $this->template->build('about'.$layout_num, $this->data);
+        $this->template->build('about', $this->data);
     }
 }

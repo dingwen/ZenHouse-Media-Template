@@ -43,7 +43,7 @@
                 });
                 sorted_list[index] = temp;
             });
-            $.post(BASE_URL + 'admin/abouts/update_sort', {'list': sorted_list}, function(data) {
+            $.post(BASE_URL + 'admin/about/update_sort', {'list': sorted_list}, function(data) {
                 $('#list').before(data);
                 $('a.close').click(function(e) {
                     e.preventDefault();
@@ -70,7 +70,7 @@
                 temp = {"id": $(this).attr('id'), "article": $(this).attr('title')};
                 sorted_list[index] = temp;
             });
-            $.post(BASE_URL + 'admin/abouts/update_sort', {'list': sorted_list}, function(data) {
+            $.post(BASE_URL + 'admin/about/update_sort', {'list': sorted_list}, function(data) {
                 $('#list').before(data);
                 $('a.close').click(function(e) {
                     e.preventDefault();

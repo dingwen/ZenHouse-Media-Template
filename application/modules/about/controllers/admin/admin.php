@@ -22,6 +22,10 @@ class Admin extends Admin_Controller {
                 "field" => "title",
                 "label" => "Title",
                 "rules" => "trim|required|min_length[3]|max_length[250]|callback_title_check"
+            ),array(
+                "field" => "link_name",
+                "label" => "Link Name",
+                "rules" => "trim|required|min_length[3]|max_length[250]"
             ),
             array(
                 "field" => "category",
