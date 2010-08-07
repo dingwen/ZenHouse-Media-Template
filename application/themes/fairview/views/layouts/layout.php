@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title><?php echo $template['title']; ?></title>
-        <script type="text/javascript">
+        <script>
             var APPPATH_URI = "<?php echo APPPATH_URI;?>";
             var BASE_URL = "<?php echo base_url();?>";
             var BASE_URI = "<?php echo BASE_URI;?>";

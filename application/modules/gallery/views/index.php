@@ -34,7 +34,10 @@
         </div>
         <div id="thumb-control">
             <div class="photo-index"></div>
-            <div class="pagination-img"></div>
+            <div id="page-control">
+                <a class="prev" href="#"><<</a>
+                <a class="next" href="#">>></a>
+            </div>
         </div>
     </div>
     <div class="clear-both"></div>
@@ -67,6 +70,7 @@
 <script>
 jQuery(document).ready(function($) {
     var onMouseOutOpacity = 0.45;
+    var gallery = $('#gallery-view-thumbs');
 
     $('#gallery-view-thumbs ul.thumbs li').opacityrollover({
         mouseOutOpacity:   onMouseOutOpacity,
@@ -75,7 +79,7 @@ jQuery(document).ready(function($) {
         exemptionSelector: '.selected'
     });
 
-    $('#gallery-view-thumbs').galleriffic({
+    gallery.galleriffic({
         'delay':                     1500, // in milliseconds
         'numThumbs':                 8, // The number of thumbnails to show page
         'preloadAhead':              40, // Set to -1 to preload all images
@@ -111,6 +115,16 @@ jQuery(document).ready(function($) {
         onPageTransitionIn:         function() {
             this.fadeTo('fast', 1.0);
         }
+    });
+
+    $('#page-control a.prev').click(function(e) {
+        gallery.previousPage();
+        e.preventDefault();
+    });
+
+    $('#page-control a.next').click(function(e) {
+        gallery.nextPage();
+        e.preventDefault();
     });
 });
 </script>
