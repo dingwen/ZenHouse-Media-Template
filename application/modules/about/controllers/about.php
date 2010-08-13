@@ -9,7 +9,10 @@ class About extends Public_Controller {
     public function index($slug = "") {
         $this->data->about_list = $this->abouts_m->get_about_list();
         if(empty($slug)) {
-            $this->data->content = $this->abouts_m->get_first_about();
+            $content = $this->abouts_m->get_first_about();
+            if($content) {
+                $this->data->content = & $content;
+            }
         } else {
             $this->data->content = $this->abouts_m->get_by_slug($slug);
         }

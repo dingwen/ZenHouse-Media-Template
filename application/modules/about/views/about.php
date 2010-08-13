@@ -23,8 +23,13 @@
             </div><!--subnav-->
         </div><!--left-col-->
         <div id="right-col">
+        <?php if(isset($content) AND !empty($content)): ?>
             <h2><?php echo $content['title']; ?></h2>
             <?php echo $content['content']; ?>
+        <?php else: ?>
+            <h2>Coming Soon</h2>
+            <p>The content is on its way.</p>
+        <?php endif; ?>
         </div><!--right-col-->
         <div class="clear-both"></div>
     </div><!--main-inner-->
