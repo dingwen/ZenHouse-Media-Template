@@ -20,7 +20,7 @@ class Admin extends Admin_Controller {
                 array(
                         'field' => 'sharethis_enable',
                         'label' => 'Enable ShareThis',
-                        'rules' => 'max_length[1]|numeric|callback_check_sharethis'
+                        'rules' => 'callback_check_sharethis'
                 ),
                 array(
                         'field' => 'google_analytics',
@@ -30,7 +30,7 @@ class Admin extends Admin_Controller {
                 array(
                         'field' => 'google_analytics_enable',
                         'label' => 'Enable Google Analytics',
-                        'rules' => 'max_length[1]|numeric|callback_check_ga'
+                        'rules' => 'callback_check_ga'
                 ),
                 array(
                         'field' => 'google_api_key',

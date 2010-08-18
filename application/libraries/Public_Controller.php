@@ -35,8 +35,10 @@ class Public_Controller extends MY_Controller {
         
         $this->template->title($this->data->web_profile['meta_title']);
 
-        if($this->data->web_settings['google_analytics_enable'] AND !empty($this->data->web_settings['google_analytics'])){
-            $this->template->append_metadata($this->load->view('fragments/google_analytics', array('google_analytics' => $this->data->web_settings['google_analytics']) ,true));
+        if(isset($this->data->web_settings['google_analytics_enable']) AND $this->data->web_settings['google_analytics_enable']) {
+            if(!empty($this->data->web_settings['google_analytics'])){
+                $this->template->append_metadata($this->load->view('fragments/google_analytics', array('google_analytics' => $this->data->web_settings['google_analytics']) ,true));
+            }
         }
         
         $this->template->set_metadata('description', $this->data->web_profile['meta_description'], 'meta')
