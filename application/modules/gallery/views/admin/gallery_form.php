@@ -6,6 +6,12 @@
                 <label>Title</label>
                 <?php echo form_input('title', set_value('title', $gallery->title)); ?>
             </div>
+            <?php if($gallery_category_enable): ?>
+            <div>
+                <label>Category</label>
+                <?php echo form_dropdown('category', $categories, set_value('category', $gallery->category)); ?>
+            </div>
+            <?php endif; ?>
             <div>
                 <label>Description</label>
                 <textarea name="description" class="tinymce"><?php echo set_value('addtional_content', $gallery->description); ?></textarea>

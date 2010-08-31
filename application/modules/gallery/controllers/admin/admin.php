@@ -5,6 +5,7 @@ class Admin extends Admin_Controller {
     protected $gallery_id;
     protected $gallery_slug;
     protected $image_settings;
+    protected $gallery_category_enable;
 
     public function __construct() {
         parent::__construct();
@@ -12,6 +13,14 @@ class Admin extends Admin_Controller {
         $this->load->helpers(array('path', 'file'));
         $this->load->model(array('gallery_m', 'image_m'));
         $this->image_settings = $this->config->item('image_settings');
+        $this->gallery_category_enable = $this->config->item('gallery_category_enable');
+        $this->data->gallery_category_enable = $this->gallery_category_enable;
+        
+        if ($this->gallery_category_enable) {
+            $this->load->model('categories/categories_m');
+            $this->data->categories = $this->categories_m->get_sub_by_main_name('gallery');
+        }
+
         $this->template->set_partial('side_menu', 'admin/side_menu');
         $this->gallery_id = 0;
     }
@@ -261,7 +270,12 @@ class Admin extends Admin_Controller {
     }
 
     public function sort_galleries() {
-        $this->data->galleries = $this->gallery_m->get_many_by(array('status' => 'live'), 'weight');
+        if ($this->gallery_category_enable) {
+            $this->data->galleries_with_cate = $this->gallery_m->get_gallery_with_category();
+            $this->data->galleries = $this->gallery_m->get_many_by(array('status =' => 'live', 'category <' => 1), 'weight');
+        } else {
+            $this->data->galleries = $this->gallery_m->get_many_by(array('status' => 'live'), 'weight');
+        }
         $this->template->set_partial('google_cdn', 'fragments/jquery_ui_cdn', FALSE);
         $this->template->build('admin/sort_galleries', $this->data);
     }
@@ -291,14 +305,38 @@ class Admin extends Admin_Controller {
     }
 
     public function update_sort_galleries() {
-        $sorted_list = $this->input->post('list');
-        $count = count($sorted_list);
+        $result = FALSE;
 
-        $str = "";
-        $result = null;
+        if($this->gallery_category_enable) {
+            $sorted_list = $this->input->post('list');
+            $sorted_count = count($sorted_list);
 
-        for ($i = 0; $i < $count; $i++) {
-            $result = $this->gallery_m->update($sorted_list[$i]['id'], array('weight' => $i * 5));
+            $no_cate_list = $this->input->post('no_cate_list');
+            $no_cate_count = count($no_cate_list);
+
+            for ($i = 0; $i < $sorted_count; $i++) {
+                $category = & $sorted_list[$i]['category'];
+                $galleries = & $sorted_list[$i]['galleries'];
+                $count_galleries = count($galleries);
+
+                $this->categories_m->update($category['id'], array('weight' => $i * 5));
+
+                for($j = 0; $j < $count_galleries; $j++) {
+                    $result = $this->gallery_m->update($galleries[$j]['id'], array('weight' => $j * 5));
+                }
+            }
+
+            for ($i = 0; $i < $no_cate_count; $i++) {
+                $result = $this->gallery_m->update($no_cate_list[$i]['id'], array('weight' => $i * 5));
+            }
+            
+        } else {
+            $sorted_list = $this->input->post('list');
+            $count = count($sorted_list);
+
+            for ($i = 0; $i < $count; $i++) {
+                $result = $this->gallery_m->update($sorted_list[$i]['id'], array('weight' => $i * 5));
+            }
         }
         
         if ($result) {
@@ -402,6 +440,16 @@ class Admin extends Admin_Controller {
                 "field" => "title",
                 "label" => "Title",
                 "rules" => "trim|required|min_length[3]|max_length[250]|callback_title_check"
+            ),
+            array(
+                "field" => "title",
+                "label" => "Title",
+                "rules" => "trim|required|min_length[3]|max_length[250]|callback_title_check"
+            ),
+            array(
+                "field" => "category",
+                "label" => "Category",
+                "rules" => ""
             ),
             array(
                 "field" => "description",

@@ -6,7 +6,18 @@ class categories_m extends MY_Model {
     }
 
     public function get_main() {
-        $result = $this->get_many_by(array('parent_id' => 0), 'name');
+        $gallery_enable = $this->config->item('gallery_category_enable');
+
+        if($this->category_enable AND $gallery_enable) {
+            $result = $this->get_many_by(array('parent_id' => 0), 'name');
+        } else if($this->category_enable AND !$gallery_enable) {
+            $result = $this->get_many_by(array('parent_id =' => 0, 'name !=' => 'gallery'), 'name');
+        } else if(!$this->category_enable AND $gallery_enable) {
+            $result = $this->get_many_by(array('parent_id' => 0, 'name' => 'gallery'), 'name');
+        } else {
+            return FALSE;
+        }
+
         if($result) {
             $temp = array('' => 'Select a Page');
             foreach($result as $row) {

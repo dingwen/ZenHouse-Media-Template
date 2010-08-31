@@ -3,22 +3,33 @@
         init_datatable();
 
         $("form").submit(function(e) {
+            var link_id = $('input:hidden[name="id"]').val();
+            var allow = $('input:hidden[name="allow"]').val();
+
+            if(link_id > 0 || allow > 0) {
+                $.post(BASE_URL + 'admin/contact/add_social_media' , $("form").serialize(), function(data) {
+                    var result_msg = $.parseJSON(data);
+                    $('#form').prepend(result_msg.message);
+                    if(result_msg.links != "error") {
+                       $('form :input').not(':submit').val('');
+                       $('#content-list').html(result_msg.links);
+                       init_datatable();
+                       confirm_popup();
+                    }
+                    close_message();
+                })
+            } else {
+                alert("The number of links exceeds the limit.");
+            }
+            
             e.preventDefault();
-            $.post(BASE_URL + 'admin/contact/add_social_media' , $("form").serialize(), function(data) {
-                var result_msg = $.parseJSON(data);
-                $('#form').prepend(result_msg.message);
-                if(result_msg.links != "error") {
-                   $('form :input').not(':submit').val('');
-                   $('#content-list').html(result_msg.links);
-                   init_datatable();
-                   confirm_popup();
-                }
-                close_message();
-            })
         });
 
         function init_datatable() {
             $('#social_media_list').dataTable({
+                "bLengthChange" : false,
+                "bFilter": false,
+                "bPaginate": false,
                 "aoColumns": [null, null, null, {"bSortable": false}]
             });
             edit_link();

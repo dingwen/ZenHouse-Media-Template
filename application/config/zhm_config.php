@@ -5,7 +5,7 @@
 |--------------------------------------------------------------------------
 */
 $config['categories_enable'] = FALSE;
-$config['general_title'] = "Fairview Conveyor Services";
+$config['gallery_category_enable'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

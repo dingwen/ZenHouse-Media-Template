@@ -7,11 +7,10 @@ class Admin extends Admin_Controller {
     public function __construct() {
         parent::__construct();
 
-        $this->load->config('zhm_config');
-
         $this->template->set_partial('side_menu', 'admin/side_menu');
 
         $this->load->model('abouts_m');
+        
         if ($this->category_enable) {
             $this->load->model('categories/categories_m');
             $this->data->categories = $this->categories_m->get_sub_by_main_name('about');
@@ -22,7 +21,8 @@ class Admin extends Admin_Controller {
                 "field" => "title",
                 "label" => "Title",
                 "rules" => "trim|required|min_length[3]|max_length[250]|callback_title_check"
-            ),array(
+            ),
+            array(
                 "field" => "link_name",
                 "label" => "Link Name",
                 "rules" => "trim|required|min_length[3]|max_length[250]"

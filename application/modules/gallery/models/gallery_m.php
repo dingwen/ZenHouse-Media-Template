@@ -24,4 +24,21 @@ class Gallery_m extends MY_Model {
 
         return $this->delete($id);
     }
+
+    public function get_gallery_with_category() {
+        $category_sql = 'select c2.id, c2.name, c1.weight from `categories` c1 join `categories` c2 on c1.id = c2.parent_id where c1.name = ? order by c2.weight, c2.id';
+        $gallery_sql = 'select `id`, `title`, `weight` from `galleries` where `status` = ? AND `category` = ? order by weight';
+
+        $categories = $this->db->query($category_sql, 'gallery');
+
+        $list = array();
+
+        foreach($categories->result_array() as $category) {
+            $galleries = $this->db->query($gallery_sql, array('live', $category['id']));
+            $category['galleries'] = $galleries->result_array();
+            $list[] = $category;
+        }
+
+        return $list;
+    }
 }

@@ -52,3 +52,10 @@
         </div>
     </form>
 </div>
+<?php
+    if($links_count < $links_limit) {
+        echo form_hidden('allow', 1);
+    } else {
+        echo form_hidden('allow', 0);
+    }
+?>

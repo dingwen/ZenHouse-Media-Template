@@ -36,10 +36,10 @@
         $("#save_list").click(function() {
             list.children('li.category').each(function(index) {
                 var temp = new Object();
-                temp.category = {"id": $(this).attr('id'), "category": $(this).attr('title')} ;
+                temp.category = {"id": $(this).attr('id')} ;
                 temp.articles = new Array();
                 $(this).find('li').each(function(index) {
-                    temp.articles[index] = {"id": $(this).attr('id'), "article": $(this).attr('title')};
+                    temp.articles[index] = {"id": $(this).attr('id')};
                 });
                 sorted_list[index] = temp;
             });
@@ -67,7 +67,7 @@
         $("#save_list").click(function() {
             list.children('li').each(function(index) {
                 var temp = new Object();
-                temp = {"id": $(this).attr('id'), "article": $(this).attr('title')};
+                temp = {"id": $(this).attr('id')};
                 sorted_list[index] = temp;
             });
             $.post(BASE_URL + 'admin/about/update_sort', {'list': sorted_list}, function(data) {

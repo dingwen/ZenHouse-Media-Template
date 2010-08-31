@@ -121,6 +121,8 @@ class Admin extends Admin_Controller {
     public function edit_social_media() {
         $this->data->types = $this->sm_links_m->get_social_media_types_dd();
         $this->data->links = $this->sm_links_m->get_many_by(array('parent' => 'contact'));
+        $this->data->links_limit = $this->config->item('social_media_limit');
+        $this->data->links_count = count($this->data->links);
 
         $this->template->append_metadata(js('social_media_form.js', 'contact'))
                 ->append_metadata(css('admin/dataTable.css'))
@@ -129,9 +131,10 @@ class Admin extends Admin_Controller {
     }
 
     public function add_social_media() {
+        $result_msg = array();
+        
         $this->form_validation->set_rules($this->validation_rules['edit_social_media']);
         $success = $this->form_validation->run();
-        $result_msg = array();
 
         if($success) {
             $temp_data = $_POST;
