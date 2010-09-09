@@ -13,8 +13,14 @@ class News extends Public_Controller {
             $this->data->content = $this->news_m->get_by_slug($slug);
         }
 
-        $this->data->list = $this->news_m->get_news_list();
-        $this->template->build('index', $this->data);
+        if($this->category_enable) {
+            $this->data->list = $this->news_m->get_news_list_by_category();
+        } else {
+            $this->data->list = $this->news_m->get_news_list();
+        }
+
+        $this->template->set_metadata("", $this->theme_css_path.'2_col.css', 'css');
+        $this->template->build('news', $this->data);
     }
 
     public function rss() {

@@ -4,7 +4,7 @@
 | General Settings
 |--------------------------------------------------------------------------
 */
-$config['categories_enable'] = FALSE;
+$config['categories_enable'] = TRUE;
 $config['gallery_category_enable'] = TRUE;
 
 /*

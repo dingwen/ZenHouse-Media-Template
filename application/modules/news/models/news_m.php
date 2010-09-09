@@ -35,6 +35,32 @@ class News_m extends MY_Model {
         return FALSE;
     }
 
+    public function get_news_list_by_category() {
+        $cate_sql = 'select c1.id, c1.name from categories c join categories c1 on c.id = c1.parent_id where c.name = ? order by c1.weight';
+        $cate_result = $this->db->query($cate_sql, array('news'));
+
+        $news_list = array();
+        
+        if($cate_result->num_rows() > 0) {
+            foreach($cate_result->result() as $cate) {
+                $this->db->select('id, title, slug')
+                    ->from($this->table)
+                    ->where(array('status' => 'live', 'category' => $cate->id))
+                    ->order_by('publish_date', 'desc')
+                    ->order_by('title', 'asc');
+                $query = $this->db->get();
+
+                if($query->num_rows() > 0) {
+                    $news_list[] = array('category' => $cate->name, 'news' => $query->result_array());
+                }
+            }
+        } else {
+            return $this->get_news_list();
+        }
+
+        return $news_list;
+    }
+
     public function get_latest_news() {
         $this->db->from($this->table)
             ->where('status', 'live')
